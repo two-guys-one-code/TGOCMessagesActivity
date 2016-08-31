@@ -2,4 +2,5 @@
 <resources>
     <color name="tgoc_white">#FFFFFF</color>
     <color name="tgoc_border">#B6B6B6</color>
+    <color name="tgoc_recycleview_background">#E7E7E7</color>
 </resources>

@@ -19,7 +19,6 @@
         android:id="@+id/tgoc_message_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
         android:layout_toRightOf="@+id/tgoc_avatar"
         android:background="@drawable/msg_in"
         android:padding="@dimen/tgoc_text_message_padding" />

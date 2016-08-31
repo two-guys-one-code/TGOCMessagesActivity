@@ -1,19 +1,16 @@
 package br.com.tgoc.tgocmessage;
 
+import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageButton;
 
-import java.util.ArrayList;
-import java.util.List;
+public class TGOCMessageActivity extends AppCompatActivity {
 
-public class TGOCMessageActivity extends AppCompatActivity implements TGOCMessageInterface{
-
-    public List<TGOCMessage> messages;
     public RecyclerView tgocRecycleView;
     public TGOCMessageAdapter adapter;
     public EditText tgocEditText;
@@ -22,10 +19,10 @@ public class TGOCMessageActivity extends AppCompatActivity implements TGOCMessag
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tgocmessage);
+    }
 
-        messages = new ArrayList();
-
-        adapter = new TGOCMessageAdapter(this);
+    public void init(final TGOCMessageActivityInterface tgocMessageActivityInterface) {
+        adapter = new TGOCMessageAdapter(tgocMessageActivityInterface);
 
         tgocRecycleView = (RecyclerView) findViewById(R.id.tgoc_recycleview);
         tgocRecycleView.setItemAnimator(new DefaultItemAnimator());
@@ -33,25 +30,14 @@ public class TGOCMessageActivity extends AppCompatActivity implements TGOCMessag
         tgocRecycleView.setAdapter(adapter);
 
         tgocEditText = (EditText) findViewById(R.id.tgoc_edittext);
-    }
 
-    @Override
-    public int numberOfItemsInConversation() {
-        return messages.size();
-    }
-
-    @Override
-    public void bindViewAtPosition(TGOCMessageViewHolder view, int position) {
-
-    }
-
-    @Override
-    public int messageBubbleResAtPosition(int position) {
-        return R.layout.tgoc_out_message;
-    }
-
-    public void sendButtonClicked(View view) {
-
+        ImageButton tgonSendButton = (ImageButton) findViewById(R.id.tgoc_imagebutton);
+        tgonSendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tgocMessageActivityInterface.sendButtonClick(view);
+            }
+        });
     }
 
     public void finishSendingMessage() {

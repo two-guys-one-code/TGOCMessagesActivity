@@ -3,17 +3,34 @@ package br.com.tgoc.tgocmessages;
 import android.os.Bundle;
 import android.view.View;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.tgoc.tgocmessage.TGOCAvatar;
+import br.com.tgoc.tgocmessage.TGOCAvatarInterface;
+import br.com.tgoc.tgocmessage.TGOCBubble;
+import br.com.tgoc.tgocmessage.TGOCBubbleInterface;
 import br.com.tgoc.tgocmessage.TGOCMessage;
 import br.com.tgoc.tgocmessage.TGOCMessageActivity;
-import br.com.tgoc.tgocmessage.TGOCMessageViewHolder;
+import br.com.tgoc.tgocmessage.TGOCMessageActivityInterface;
+import br.com.tgoc.tgocmessage.TGOCMessageInterface;
 
-public class MainActivity extends TGOCMessageActivity {
+public class MainActivity extends TGOCMessageActivity implements TGOCMessageActivityInterface{
 
     int sender_id = 0;
+
+    public List<TGOCMessage> messages = new ArrayList();
+
+    TGOCBubble outgoingBubble = new TGOCBubble(R.layout.tgoc_out_message);
+    TGOCBubble incomingBubble = new TGOCBubble(R.layout.tgoc_in_message);
+    TGOCAvatar outgoingAvatar = new TGOCAvatar(R.drawable.rod);
+    TGOCAvatar incomingAvatar = new TGOCAvatar(R.drawable.ed);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        super.init(this);
 
         this.messages.add(new TGOCMessage(0, "Hi!"));
         this.messages.add(new TGOCMessage(1, "Hello!"));
@@ -26,33 +43,35 @@ public class MainActivity extends TGOCMessageActivity {
         finishSendingMessage();
     }
 
-    @Override
-    public void bindViewAtPosition(TGOCMessageViewHolder view, int position) {
-        super.bindViewAtPosition(view, position);
-
-        final TGOCMessage message = this.messages.get(position);
-
-        view.tgoc_message_text.setText(message.getText());
-
-        if (sender_id == message.getSender_id())
-            view.tgoc_avatar.setImageResource(R.drawable.rod);
-        else
-            view.tgoc_avatar.setImageResource(R.drawable.ed);
+    public int numberOfItemsInConversation() {
+        return this.messages.size();
     }
 
-    @Override
-    public int messageBubbleResAtPosition(int position) {
+    public TGOCAvatarInterface avatarAtPosition(int position) {
         final TGOCMessage message = this.messages.get(position);
 
-        if (sender_id == message.getSender_id())
-            return R.layout.tgoc_out_message;
+        if (sender_id == message.getSenderId())
+            return outgoingAvatar;
         else
-            return R.layout.tgoc_in_message;
+            return incomingAvatar;
     }
 
-    @Override
-    public void sendButtonClicked(View view) {
+    public TGOCMessageInterface messageDataAtPosition(int position) {
+        return this.messages.get(position);
+    }
+
+    public void sendButtonClick(View view) {
         this.messages.add(new TGOCMessage(0, this.tgocEditText.getText().toString()));
         this.finishSendingMessage();
     }
+
+    public TGOCBubbleInterface messageBubbleAtPosition(int position) {
+        final TGOCMessage message = this.messages.get(position);
+
+        if (sender_id == message.getSenderId())
+            return outgoingBubble;
+        else
+            return incomingBubble;
+    }
+
 }
