@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="br.com.tgoc.tgocmessage.TGOCMessageActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_above="@+id/tgoc_bottom_layout"
+        android:id="@+id/tgoc_recycleview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/tgoc_bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/tgoc_white"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/tgoc_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="5" />
+
+        <ImageButton
+            android:onClick="sendButtonClicked"
+            android:id="@+id/tgoc_imagebutton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/ic_send_black_24dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
