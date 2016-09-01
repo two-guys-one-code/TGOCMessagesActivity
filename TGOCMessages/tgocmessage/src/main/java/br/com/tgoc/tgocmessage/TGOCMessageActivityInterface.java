@@ -13,5 +13,5 @@ public interface TGOCMessageActivityInterface {
     TGOCMessageInterface messageDataAtPosition(int position);
     void bindViewHolderAtPosition(TGOCMessageViewHolderInterface view, int position);
 
-    void sendButtonClick(View view);
+    void didPressSendButton(View view);
 }

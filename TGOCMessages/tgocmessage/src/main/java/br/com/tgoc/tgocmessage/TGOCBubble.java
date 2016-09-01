@@ -1,6 +1,8 @@
 package br.com.tgoc.tgocmessage;
 
-import android.graphics.drawable.Drawable;
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.ColorMatrixColorFilter;
 
 /**
  * Created by rodrigocavalcante on 8/31/16.
@@ -9,22 +11,31 @@ public class TGOCBubble implements TGOCBubbleInterface {
 
     int resource;
     String color;
-    Drawable drawable;
 
-    public TGOCBubble(int resource, String color, Drawable drawable) {
+    public TGOCBubble(int resource, String color) {
         this.resource = resource;
         this.color = color;
-        this.drawable = drawable;
     }
 
     @Override
     public int getLayoutResource() {
-        return resource;
+        return this.resource;
     }
 
     @Override
-    public Drawable getDrawable() {
-        return drawable;
-    }
+    public ColorFilter getColorFilter() {
+        int iColor = Color.parseColor(this.color);
 
+        int red   = (iColor & 0xFF0000) / 0xFFFF;
+        int green = (iColor & 0xFF00) / 0xFF;
+        int blue  = iColor & 0xFF;
+
+        float[] matrix = { 0, 0, 0, 0, red,
+                0, 0, 0, 0, green,
+                0, 0, 0, 0, blue,
+                0, 0, 0, 1, 0 };
+
+        ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
+        return colorFilter;
+    }
 }

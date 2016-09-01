@@ -1,5 +1,6 @@
 package br.com.tgoc.tgocmessage;
 
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,9 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
     @Override
     public void onBindViewHolder(TGOCMessageViewHolder view, int position) {
 
+        TGOCBubbleInterface tgocBubbleInterface = tgocMessageActivityInterface.messageBubbleAtPosition(position);
+        view.tgoc_bubble_layout.getBackground().setColorFilter(tgocBubbleInterface.getColorFilter());
+
         TGOCMessageInterface tgocMessageInterface = tgocMessageActivityInterface.messageDataAtPosition(position);
         if(tgocMessageInterface != null) {
             view.tgoc_message_text.setText(tgocMessageInterface.getText());
@@ -56,9 +60,6 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
             Glide.with(view.mView.getContext()).load(tgocAvatarInterface.getData()).into(view.tgoc_avatar);
         } else
             view.tgoc_avatar.setVisibility(View.GONE);
-
-        TGOCBubbleInterface tgocBubbleInterface = tgocMessageActivityInterface.messageBubbleAtPosition(position);
-        view.tgoc_bubble_layout.setBackground(tgocBubbleInterface.getDrawable());
 
         tgocMessageActivityInterface.bindViewHolderAtPosition(view, position);
     }

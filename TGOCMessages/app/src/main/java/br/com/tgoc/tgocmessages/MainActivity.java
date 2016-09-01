@@ -16,7 +16,6 @@ import br.com.tgoc.tgocmessage.TGOCMessage;
 import br.com.tgoc.tgocmessage.TGOCMessageActivity;
 import br.com.tgoc.tgocmessage.TGOCMessageActivityInterface;
 import br.com.tgoc.tgocmessage.TGOCMessageInterface;
-import br.com.tgoc.tgocmessage.TGOCMessageViewHolder;
 import br.com.tgoc.tgocmessage.TGOCMessageViewHolderInterface;
 
 public class MainActivity extends TGOCMessageActivity implements TGOCMessageActivityInterface{
@@ -25,8 +24,8 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     public List<TGOCMessage> messages = new ArrayList();
 
-    TGOCBubble outgoingBubble;
-    TGOCBubble incomingBubble;
+    TGOCBubble outgoingBubble = TGOCBubbleFactory.outgoingBubbleWithColor("#C7D6DA");
+    TGOCBubble incomingBubble = TGOCBubbleFactory.incomingBubbleWithColor("#FAFFFF");
     TGOCAvatar outgoingAvatar = new TGOCAvatar(R.drawable.rod);
     TGOCAvatar incomingAvatar = new TGOCAvatar(R.drawable.ed);
 
@@ -36,9 +35,6 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
         super.init(this);
 
-        outgoingBubble = TGOCBubbleFactory.outgoingBubbleWithColor(getApplicationContext(), "#536DFE");
-        incomingBubble = TGOCBubbleFactory.incomingBubbleWithColor(getApplicationContext(), "#536DFE");
-
         this.messages.add(new TGOCMessage(0, "<b>Hi!</b>", "Rodrigo"));
         this.messages.add(new TGOCMessage(1, "Hello!", "Edgar"));
         this.messages.add(new TGOCMessage(1, "How are you?", "Edgar"));
@@ -46,7 +42,7 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
         this.messages.add(new TGOCMessage(1, "Great!", "Edgar"));
         this.messages.add(new TGOCMessage(0, "Lorem ipsum dolor sit amet, ad fabulas adipisci eum, solet voluptatum et cum, at brute maiorum deserunt ius. Ut mel elit delectus, id eum graecis antiopam. His ne aliquid sanctus, vis ex placerat interpretaris. Et quando maiestatis vis, cu amet alterum detracto sit, sit ex etiam legendos. Vim at novum persius hendrerit. Unum cotidieque eu mel.", "Rodrigo"));
         this.messages.add(new TGOCMessage(1, "Ponderum intellegat adipiscing mel cu, meliore patrioque eu mei. An est prima abhorreant. Id quo mediocrem erroribus. Nibh impetus te est, apeirian indoctum sadipscing et eum, et mollis aperiri meliore mel. Ne mundi dicant duo, qui zril definitionem eu", "Edgar"));
-        this.messages.add(new TGOCMessage(1, "Call me 988888888 and visit my web site www.website.com", "Edgar"));
+        this.messages.add(new TGOCMessage(1, "Call me 988888888 and visit my web site www.website.com or email @ em@il.com", "Edgar"));
 
         finishSendingMessage();
     }
@@ -76,10 +72,10 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
         final TGOCMessage message = this.messages.get(position);
 
-        if (sender_id == message.getSenderId()) {
-            view.getSenderTextView().setTextColor(Color.parseColor("#ffffff"));
-            view.getTextView().setTextColor(Color.parseColor("#ffffff"));
-        }
+        //if (sender_id == message.getSenderId()) {
+            view.getSenderTextView().setTextColor(Color.parseColor("#29353A"));
+            view.getTextView().setTextColor(Color.parseColor("#29353A"));
+        //}
     }
 
     @Override
@@ -93,9 +89,8 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
     }
 
     @Override
-    public void sendButtonClick(View view) {
-        this.messages.add(new TGOCMessage(0, this.tgocEditText.getText().toString()));
+    public void didPressSendButton(View view) {
+        this.messages.add(new TGOCMessage(0, this.tgocEditText.getText().toString(), "Rodrigo"));
         this.finishSendingMessage();
     }
-
 }

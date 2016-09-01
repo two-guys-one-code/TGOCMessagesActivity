@@ -11,9 +11,9 @@ import android.widget.ImageButton;
 
 public class TGOCMessageActivity extends AppCompatActivity {
 
-    public RecyclerView tgocRecycleView;
-    public TGOCMessageAdapter adapter;
-    public EditText tgocEditText;
+    protected RecyclerView tgocRecycleView;
+    protected TGOCMessageAdapter adapter;
+    protected EditText tgocEditText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,7 @@ public class TGOCMessageActivity extends AppCompatActivity {
         tgonSendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tgocMessageActivityInterface.sendButtonClick(view);
+                tgocMessageActivityInterface.didPressSendButton(view);
             }
         });
     }
