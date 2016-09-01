@@ -11,6 +11,7 @@ public interface TGOCMessageActivityInterface {
     TGOCBubbleInterface messageBubbleAtPosition(int position);
     TGOCAvatarInterface avatarAtPosition(int position);
     TGOCMessageInterface messageDataAtPosition(int position);
+    void bindViewHolderAtPosition(TGOCMessageViewHolderInterface view, int position);
 
     void sendButtonClick(View view);
 }

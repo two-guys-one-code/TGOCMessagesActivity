@@ -9,13 +9,13 @@ import android.widget.TextView;
 /**
  * Created by rodrigocavalcante on 8/31/16.
  */
-public class TGOCMessageViewHolder extends RecyclerView.ViewHolder {
+public class TGOCMessageViewHolder extends RecyclerView.ViewHolder implements TGOCMessageViewHolderInterface{
 
-    public final View mView;
-    public final TextView tgoc_message_text;
-    public final ImageView tgoc_avatar;
-    public final TextView tgoc_sender_display_name;
-    public final LinearLayout tgoc_bubble_layout;
+    protected final View mView;
+    protected final TextView tgoc_message_text;
+    protected final ImageView tgoc_avatar;
+    protected final TextView tgoc_sender_display_name;
+    protected final LinearLayout tgoc_bubble_layout;
 
     public TGOCMessageViewHolder(View view) {
         super(view);
@@ -29,5 +29,20 @@ public class TGOCMessageViewHolder extends RecyclerView.ViewHolder {
     @Override
     public String toString() {
         return super.toString() + " '" + tgoc_message_text.getText();
+    }
+
+    @Override
+    public TextView getSenderTextView() {
+        return tgoc_sender_display_name;
+    }
+
+    @Override
+    public TextView getTextView() {
+        return tgoc_message_text;
+    }
+
+    @Override
+    public ImageView getAvatar() {
+        return tgoc_avatar;
     }
 }

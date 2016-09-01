@@ -11,5 +11,4 @@ public interface TGOCMessageInterface {
     String getSenderDisplayName();
     Date getDate();
     String getText();
-
 }

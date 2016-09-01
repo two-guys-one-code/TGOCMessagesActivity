@@ -1,11 +1,6 @@
 package br.com.tgoc.tgocmessage;
 
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,14 +14,14 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
 
     TGOCMessageActivityInterface tgocMessageActivityInterface;
 
-    public TGOCMessageAdapter(TGOCMessageActivityInterface kzMessageInterface) {
-        this.tgocMessageActivityInterface = kzMessageInterface;
+    public TGOCMessageAdapter(TGOCMessageActivityInterface tgocMessageInterface) {
+        this.tgocMessageActivityInterface = tgocMessageInterface;
     }
 
     @Override
     public TGOCMessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(tgocMessageActivityInterface.messageBubbleAtPosition(viewType).getResource(), parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(tgocMessageActivityInterface.messageBubbleAtPosition(viewType).getLayoutResource(), parent, false);
 
         return new TGOCMessageViewHolder(view);
     }
@@ -45,22 +40,26 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
     public void onBindViewHolder(TGOCMessageViewHolder view, int position) {
 
         TGOCMessageInterface tgocMessageInterface = tgocMessageActivityInterface.messageDataAtPosition(position);
-
         if(tgocMessageInterface != null) {
             view.tgoc_message_text.setText(tgocMessageInterface.getText());
         }
-
-        if(tgocMessageActivityInterface.avatarAtPosition(position) != null) {
-            view.tgoc_avatar.setVisibility(View.VISIBLE);
-            Glide.with(view.mView.getContext()).load(tgocMessageActivityInterface.avatarAtPosition(position).getData()).into(view.tgoc_avatar);
-        } else
-            view.tgoc_avatar.setVisibility(View.GONE);
 
         if(tgocMessageInterface.getSenderDisplayName() != null) {
             view.tgoc_sender_display_name.setVisibility(View.VISIBLE);
             view.tgoc_sender_display_name.setText(tgocMessageInterface.getSenderDisplayName());
         } else
             view.tgoc_sender_display_name.setVisibility(View.GONE);
+
+        TGOCAvatarInterface tgocAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
+        if(tgocAvatarInterface != null) {
+            view.tgoc_avatar.setVisibility(View.VISIBLE);
+            Glide.with(view.mView.getContext()).load(tgocAvatarInterface.getData()).into(view.tgoc_avatar);
+        } else
+            view.tgoc_avatar.setVisibility(View.GONE);
+
+        TGOCBubbleInterface tgocBubbleInterface = tgocMessageActivityInterface.messageBubbleAtPosition(position);
+        view.tgoc_bubble_layout.setBackground(tgocBubbleInterface.getDrawable());
+
+        tgocMessageActivityInterface.bindViewHolderAtPosition(view, position);
     }
-    
 }
