@@ -6,11 +6,11 @@
     tools:context=".TGOCMessageActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_above="@+id/tgoc_bottom_layout"
         android:id="@+id/tgoc_recycleview"
-        android:background="@color/tgoc_recycleview_background"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/tgoc_bottom_layout"
+        android:background="@color/tgoc_recycleview_background" />
 
     <LinearLayout
         android:id="@+id/tgoc_bottom_layout"

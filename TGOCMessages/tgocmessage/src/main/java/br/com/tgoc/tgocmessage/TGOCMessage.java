@@ -8,7 +8,7 @@ import java.util.Date;
 public class TGOCMessage implements TGOCMessageInterface {
 
     int senderId;
-    String senderDisplayName;
+    String senderDisplayName = null;
     Date date;
     String text;
 

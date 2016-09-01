@@ -32,39 +32,39 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
         super.init(this);
 
-        this.messages.add(new TGOCMessage(0, "Hi!"));
-        this.messages.add(new TGOCMessage(1, "Hello!"));
+        this.messages.add(new TGOCMessage(0, "<b>Hi!</b>", "Rodrigo"));
+        this.messages.add(new TGOCMessage(1, "Hello!", "Edgar"));
         this.messages.add(new TGOCMessage(1, "How are you?"));
-        this.messages.add(new TGOCMessage(0, "Fine, and you?"));
+        this.messages.add(new TGOCMessage(0, "Fine. And you?", "Rodrigo"));
         this.messages.add(new TGOCMessage(1, "Great!"));
-        this.messages.add(new TGOCMessage(0, "Lorem ipsum dolor sit amet, ad fabulas adipisci eum, solet voluptatum et cum, at brute maiorum deserunt ius. Ut mel elit delectus, id eum graecis antiopam. His ne aliquid sanctus, vis ex placerat interpretaris. Et quando maiestatis vis, cu amet alterum detracto sit, sit ex etiam legendos. Vim at novum persius hendrerit. Unum cotidieque eu mel."));
+        this.messages.add(new TGOCMessage(0, "Lorem ipsum dolor sit amet, ad fabulas adipisci eum, solet voluptatum et cum, at brute maiorum deserunt ius. Ut mel elit delectus, id eum graecis antiopam. His ne aliquid sanctus, vis ex placerat interpretaris. Et quando maiestatis vis, cu amet alterum detracto sit, sit ex etiam legendos. Vim at novum persius hendrerit. Unum cotidieque eu mel.", "Rodrigo"));
         this.messages.add(new TGOCMessage(1, "Ponderum intellegat adipiscing mel cu, meliore patrioque eu mei. An est prima abhorreant. Id quo mediocrem erroribus. Nibh impetus te est, apeirian indoctum sadipscing et eum, et mollis aperiri meliore mel. Ne mundi dicant duo, qui zril definitionem eu"));
+        this.messages.add(new TGOCMessage(1, "Call me 988888888 and visit my web site www.website.com"));
 
         finishSendingMessage();
     }
 
+    @Override
     public int numberOfItemsInConversation() {
         return this.messages.size();
     }
 
+    @Override
     public TGOCAvatarInterface avatarAtPosition(int position) {
         final TGOCMessage message = this.messages.get(position);
 
         if (sender_id == message.getSenderId())
-            return outgoingAvatar;
+            return null;
         else
             return incomingAvatar;
     }
 
+    @Override
     public TGOCMessageInterface messageDataAtPosition(int position) {
         return this.messages.get(position);
     }
 
-    public void sendButtonClick(View view) {
-        this.messages.add(new TGOCMessage(0, this.tgocEditText.getText().toString()));
-        this.finishSendingMessage();
-    }
-
+    @Override
     public TGOCBubbleInterface messageBubbleAtPosition(int position) {
         final TGOCMessage message = this.messages.get(position);
 
@@ -72,6 +72,12 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
             return outgoingBubble;
         else
             return incomingBubble;
+    }
+
+    @Override
+    public void sendButtonClick(View view) {
+        this.messages.add(new TGOCMessage(0, this.tgocEditText.getText().toString()));
+        this.finishSendingMessage();
     }
 
 }
