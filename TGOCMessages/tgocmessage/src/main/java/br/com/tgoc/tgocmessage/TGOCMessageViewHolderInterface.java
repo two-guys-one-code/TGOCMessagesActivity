@@ -9,5 +9,6 @@ import android.widget.TextView;
 public interface TGOCMessageViewHolderInterface {
     TextView getSenderTextView();
     TextView getTextView();
+    TextView getTimeTextView();
     ImageView getAvatar();
 }

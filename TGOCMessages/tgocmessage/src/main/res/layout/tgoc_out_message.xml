@@ -29,8 +29,6 @@
             android:id="@+id/tgoc_sender_display_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/tgoc_avatar"
-            android:autoLink="all"
             android:selectAllOnFocus="true"
             android:textIsSelectable="true"
             android:textStyle="bold" />
@@ -39,9 +37,16 @@
             android:id="@+id/tgoc_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:autoLink="all"
             android:selectAllOnFocus="true"
             android:textIsSelectable="true" />
+
+        <TextView
+            android:id="@+id/tgoc_message_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/tgoc_border" />
 
     </LinearLayout>
 

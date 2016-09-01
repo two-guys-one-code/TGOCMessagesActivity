@@ -1,7 +1,8 @@
 package br.com.tgoc.tgocmessage;
 
-import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,13 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
         TGOCMessageInterface tgocMessageInterface = tgocMessageActivityInterface.messageDataAtPosition(position);
         if(tgocMessageInterface != null) {
             view.tgoc_message_text.setText(tgocMessageInterface.getText());
+            Linkify.addLinks(view.tgoc_message_text, Linkify.ALL);
+
+            if (tgocMessageInterface.getDate() != null) {
+                view.tgoc_time_text.setVisibility(View.VISIBLE);
+                view.tgoc_time_text.setText(DateFormat.getTimeFormat(view.mView.getContext()).format(tgocMessageInterface.getDate()));
+            } else
+                view.tgoc_time_text.setVisibility(View.GONE);
         }
 
         if(tgocMessageInterface.getSenderDisplayName() != null) {

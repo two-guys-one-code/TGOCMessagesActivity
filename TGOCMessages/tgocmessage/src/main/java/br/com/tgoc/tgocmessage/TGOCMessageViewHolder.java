@@ -16,6 +16,7 @@ public class TGOCMessageViewHolder extends RecyclerView.ViewHolder implements TG
     protected final ImageView tgoc_avatar;
     protected final TextView tgoc_sender_display_name;
     protected final LinearLayout tgoc_bubble_layout;
+    protected final TextView tgoc_time_text;
 
     public TGOCMessageViewHolder(View view) {
         super(view);
@@ -24,6 +25,7 @@ public class TGOCMessageViewHolder extends RecyclerView.ViewHolder implements TG
         tgoc_avatar = (ImageView) view.findViewById(R.id.tgoc_avatar);
         tgoc_sender_display_name = (TextView) view.findViewById(R.id.tgoc_sender_display_name);
         tgoc_bubble_layout = (LinearLayout) view.findViewById(R.id.tgoc_bubble_layout);
+        tgoc_time_text = (TextView) view.findViewById(R.id.tgoc_message_time);
     }
 
     @Override
@@ -39,6 +41,11 @@ public class TGOCMessageViewHolder extends RecyclerView.ViewHolder implements TG
     @Override
     public TextView getTextView() {
         return tgoc_message_text;
+    }
+
+    @Override
+    public TextView getTimeTextView() {
+        return tgoc_time_text;
     }
 
     @Override
