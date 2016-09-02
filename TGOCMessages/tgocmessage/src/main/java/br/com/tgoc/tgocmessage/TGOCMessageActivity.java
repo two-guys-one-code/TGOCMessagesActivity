@@ -38,6 +38,13 @@ public class TGOCMessageActivity extends AppCompatActivity {
                 tgocMessageActivityInterface.didPressSendButton(view);
             }
         });
+
+        tgocRecycleView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+            @Override
+            public void onLayoutChange(View view, int i, int i1, int i2, int i3, int i4, int i5, int i6, int i7) {
+                tgocRecycleView.scrollToPosition(adapter.getItemCount() - 1);
+            }
+        });
     }
 
     public void finishSendingMessage() {

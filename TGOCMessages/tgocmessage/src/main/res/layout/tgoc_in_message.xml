@@ -22,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/tgoc_avatar"
         android:background="@drawable/msg_in"
+        android:backgroundTint="@color/tgoc_border"
         android:orientation="vertical"
         android:padding="@dimen/tgoc_text_message_padding">
 
@@ -29,6 +30,8 @@
             android:id="@+id/tgoc_sender_display_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tgoc_layout_message_padding"
+            android:layout_marginTop="@dimen/tgoc_layout_message_padding"
             android:selectAllOnFocus="true"
             android:textIsSelectable="true"
             android:textStyle="bold" />
@@ -37,6 +40,7 @@
             android:id="@+id/tgoc_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/tgoc_layout_message_padding"
             android:selectAllOnFocus="true"
             android:textIsSelectable="true" />
 
