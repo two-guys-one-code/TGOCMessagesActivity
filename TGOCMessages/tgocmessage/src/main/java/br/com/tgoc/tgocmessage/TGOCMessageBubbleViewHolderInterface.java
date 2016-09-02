@@ -6,7 +6,7 @@ import android.widget.TextView;
 /**
  * Created by rodrigocavalcante on 9/1/16.
  */
-public interface TGOCMessageViewHolderInterface {
+public interface TGOCMessageBubbleViewHolderInterface {
     TextView getSenderTextView();
     TextView getTextView();
     TextView getTimeTextView();

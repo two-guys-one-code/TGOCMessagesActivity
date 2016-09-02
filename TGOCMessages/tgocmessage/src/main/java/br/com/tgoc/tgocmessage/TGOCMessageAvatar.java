@@ -5,25 +5,25 @@ import java.io.File;
 /**
  * Created by rodrigocavalcante on 8/31/16.
  */
-public class TGOCAvatar implements TGOCAvatarInterface {
+public class TGOCMessageAvatar implements TGOCMessageAvatarInterface {
 
     int resource;
     String url;
     File file;
 
-    public TGOCAvatar (int resource) {
+    public TGOCMessageAvatar(int resource) {
         this.resource = resource;
     }
 
-    public TGOCAvatar (String url) {
+    public TGOCMessageAvatar(String url) {
         this.url = url;
     }
 
-    public TGOCAvatar (File file) {
+    public TGOCMessageAvatar(File file) {
         this.file = file;
     }
 
-    public TGOCAvatar() {
+    public TGOCMessageAvatar() {
         this.resource = 0;
     }
 

@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 /**
  * Created by rodrigocavalcante on 8/31/16.
  */
-public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHolder> {
+public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleViewHolder> {
 
     TGOCMessageActivityInterface tgocMessageActivityInterface;
 
@@ -21,11 +21,11 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
     }
 
     @Override
-    public TGOCMessageViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public TGOCMessageBubbleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(parent.getContext()).inflate(tgocMessageActivityInterface.messageBubbleAtPosition(viewType).getLayoutResource(), parent, false);
 
-        return new TGOCMessageViewHolder(view);
+        return new TGOCMessageBubbleViewHolder(view);
     }
 
     @Override
@@ -39,12 +39,19 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
     }
 
     @Override
-    public void onBindViewHolder(TGOCMessageViewHolder view, int position) {
+    public void onBindViewHolder(TGOCMessageBubbleViewHolder view, int position) {
 
+        TGOCMessageInterface tgocMessageInterface = tgocMessageActivityInterface.messageDataAtPosition(position);
+
+        setupBubble(view, position, tgocMessageInterface);
+
+        tgocMessageActivityInterface.bindViewHolderAtPosition(view, position);
+    }
+
+    public void setupBubble(TGOCMessageBubbleViewHolder view, int position, final TGOCMessageInterface tgocMessageInterface) {
         TGOCBubbleInterface tgocBubbleInterface = tgocMessageActivityInterface.messageBubbleAtPosition(position);
         view.tgoc_bubble_layout.getBackground().setColorFilter(tgocBubbleInterface.getColorFilter());
 
-        TGOCMessageInterface tgocMessageInterface = tgocMessageActivityInterface.messageDataAtPosition(position);
         if(tgocMessageInterface != null) {
             view.tgoc_message_text.setText(tgocMessageInterface.getText());
             Linkify.addLinks(view.tgoc_message_text, Linkify.ALL);
@@ -62,13 +69,26 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageViewHold
         } else
             view.tgoc_sender_display_name.setVisibility(View.GONE);
 
-        TGOCAvatarInterface tgocAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
-        if(tgocAvatarInterface != null) {
+        TGOCMessageAvatarInterface tgocMessageAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
+        if(tgocMessageAvatarInterface != null) {
             view.tgoc_avatar.setVisibility(View.VISIBLE);
-            Glide.with(view.mView.getContext()).load(tgocAvatarInterface.getData()).into(view.tgoc_avatar);
+            Glide.with(view.mView.getContext()).load(tgocMessageAvatarInterface.getData()).into(view.tgoc_avatar);
         } else
             view.tgoc_avatar.setVisibility(View.GONE);
 
-        tgocMessageActivityInterface.bindViewHolderAtPosition(view, position);
+        if(tgocMessageInterface.isMediaMessage()) {
+            view.tgoc_content.removeAllViews();
+            view.tgoc_content.addView(tgocMessageInterface.getMedia().getView(view.mView.getContext()));
+
+            view.mView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    tgocMessageActivityInterface.didSelectMessage(tgocMessageInterface);
+                }
+            });
+        } else {
+            view.mView.setOnClickListener(null);
+        }
+
     }
 }

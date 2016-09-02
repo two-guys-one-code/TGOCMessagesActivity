@@ -35,11 +35,17 @@
             android:textIsSelectable="true"
             android:textStyle="bold" />
 
+        <LinearLayout
+            android:id="@+id/tgoc_content"
+            android:layout_marginRight="@dimen/tgoc_layout_message_padding"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"></LinearLayout>
+
         <TextView
             android:id="@+id/tgoc_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/tgoc_layout_message_padding"
             android:selectAllOnFocus="true"
             android:textIsSelectable="true" />
 

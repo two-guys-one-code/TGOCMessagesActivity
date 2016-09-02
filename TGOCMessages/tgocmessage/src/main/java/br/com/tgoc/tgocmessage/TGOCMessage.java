@@ -11,6 +11,8 @@ public class TGOCMessage implements TGOCMessageInterface {
     String senderDisplayName = null;
     Date date;
     String text;
+    boolean isMediaMessage = false;
+    TGOCMessageMediaInterface media;
 
     public Date getDate() {
         return date;
@@ -18,6 +20,15 @@ public class TGOCMessage implements TGOCMessageInterface {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public TGOCMessage(int senderId, String text, String senderDisplayName, TGOCMessageMediaInterface media) {
+        this.senderId = senderId;
+        this.text = text;
+        this.senderDisplayName = senderDisplayName;
+        this.date = new Date();
+        this.media = media;
+        this.isMediaMessage = true;
     }
 
     public TGOCMessage(int senderId, String text, String senderDisplayName) {
@@ -55,6 +66,16 @@ public class TGOCMessage implements TGOCMessageInterface {
 
     public String getText() {
         return text;
+    }
+
+    @Override
+    public boolean isMediaMessage() {
+        return isMediaMessage;
+    }
+
+    @Override
+    public TGOCMessageMediaInterface getMedia() {
+        return media;
     }
 
     public void setText(String text) {

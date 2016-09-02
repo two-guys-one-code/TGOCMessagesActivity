@@ -9,28 +9,25 @@ import android.widget.TextView;
 /**
  * Created by rodrigocavalcante on 8/31/16.
  */
-public class TGOCMessageViewHolder extends RecyclerView.ViewHolder implements TGOCMessageViewHolderInterface{
+public class TGOCMessageBubbleViewHolder extends RecyclerView.ViewHolder implements TGOCMessageBubbleViewHolderInterface {
 
     protected final View mView;
-    protected final TextView tgoc_message_text;
     protected final ImageView tgoc_avatar;
     protected final TextView tgoc_sender_display_name;
     protected final LinearLayout tgoc_bubble_layout;
     protected final TextView tgoc_time_text;
+    protected final LinearLayout tgoc_content;
+    protected final TextView tgoc_message_text;
 
-    public TGOCMessageViewHolder(View view) {
+    public TGOCMessageBubbleViewHolder(View view) {
         super(view);
         mView = view;
-        tgoc_message_text = (TextView) view.findViewById(R.id.tgoc_message_text);
         tgoc_avatar = (ImageView) view.findViewById(R.id.tgoc_avatar);
         tgoc_sender_display_name = (TextView) view.findViewById(R.id.tgoc_sender_display_name);
         tgoc_bubble_layout = (LinearLayout) view.findViewById(R.id.tgoc_bubble_layout);
         tgoc_time_text = (TextView) view.findViewById(R.id.tgoc_message_time);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + " '" + tgoc_message_text.getText();
+        tgoc_content = (LinearLayout) view.findViewById(R.id.tgoc_content);
+        tgoc_message_text = (TextView) view.findViewById(R.id.tgoc_message_text);
     }
 
     @Override

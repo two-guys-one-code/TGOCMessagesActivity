@@ -9,9 +9,9 @@ public interface TGOCMessageActivityInterface {
 
     int numberOfItemsInConversation();
     TGOCBubbleInterface messageBubbleAtPosition(int position);
-    TGOCAvatarInterface avatarAtPosition(int position);
+    TGOCMessageAvatarInterface avatarAtPosition(int position);
     TGOCMessageInterface messageDataAtPosition(int position);
-    void bindViewHolderAtPosition(TGOCMessageViewHolderInterface view, int position);
-
+    void bindViewHolderAtPosition(TGOCMessageBubbleViewHolderInterface view, int position);
+    void didSelectMessage(TGOCMessageInterface messageInterface);
     void didPressSendButton(View view);
 }
