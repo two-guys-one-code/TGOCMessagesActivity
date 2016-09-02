@@ -26,7 +26,9 @@ public class TGOCMessageActivity extends AppCompatActivity {
 
         tgocRecycleView = (RecyclerView) findViewById(R.id.tgoc_recycleview);
         tgocRecycleView.setItemAnimator(new DefaultItemAnimator());
-        tgocRecycleView.setLayoutManager(new LinearLayoutManager(tgocRecycleView.getContext()));
+        LinearLayoutManager manager = new LinearLayoutManager(tgocRecycleView.getContext());
+        manager.setStackFromEnd(true);
+        tgocRecycleView.setLayoutManager(manager);
         tgocRecycleView.setAdapter(adapter);
 
         tgocEditText = (EditText) findViewById(R.id.tgoc_edittext);

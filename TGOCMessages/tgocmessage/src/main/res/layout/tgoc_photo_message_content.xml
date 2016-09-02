@@ -20,5 +20,4 @@
         android:maxHeight="@dimen/tgoc_image_max_size"
         android:maxWidth="@dimen/tgoc_image_max_size" />
 
-
 </RelativeLayout>

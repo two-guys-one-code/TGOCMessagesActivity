@@ -48,7 +48,7 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleVi
         tgocMessageActivityInterface.bindViewHolderAtPosition(view, position);
     }
 
-    public void setupBubble(TGOCMessageBubbleViewHolder view, int position, final TGOCMessageInterface tgocMessageInterface) {
+    public void setupBubble(final TGOCMessageBubbleViewHolder view, int position, final TGOCMessageInterface tgocMessageInterface) {
         TGOCBubbleInterface tgocBubbleInterface = tgocMessageActivityInterface.messageBubbleAtPosition(position);
         view.tgoc_bubble_layout.getBackground().setColorFilter(tgocBubbleInterface.getColorFilter());
 
@@ -78,16 +78,19 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleVi
 
         if(tgocMessageInterface.isMediaMessage()) {
             view.tgoc_content.removeAllViews();
-            view.tgoc_content.addView(tgocMessageInterface.getMedia().getView(view.mView.getContext()));
 
-            view.mView.setOnClickListener(new View.OnClickListener() {
+            View  content = tgocMessageInterface.getMedia().getView(view.mView.getContext());
+
+            view.tgoc_content.addView(content);
+
+            content.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View view) {
+                public void onClick(View v) {
                     tgocMessageActivityInterface.didSelectMessage(tgocMessageInterface);
                 }
             });
         } else {
-            view.mView.setOnClickListener(null);
+            view.tgoc_message_text.setOnClickListener(null);
         }
 
     }
