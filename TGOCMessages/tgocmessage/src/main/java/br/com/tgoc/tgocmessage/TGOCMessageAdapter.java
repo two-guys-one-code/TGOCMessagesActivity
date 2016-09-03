@@ -1,5 +1,8 @@
 package br.com.tgoc.tgocmessage;
 
+import android.graphics.Bitmap;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.text.util.Linkify;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
 
 /**
  * Created by rodrigocavalcante on 8/31/16.
@@ -72,7 +76,16 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleVi
         TGOCMessageAvatarInterface tgocMessageAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
         if(tgocMessageAvatarInterface != null) {
             view.tgoc_avatar.setVisibility(View.VISIBLE);
-            Glide.with(view.mView.getContext()).load(tgocMessageAvatarInterface.getData()).into(view.tgoc_avatar);
+            Glide.with(view.mView.getContext()).load(tgocMessageAvatarInterface.getData()).asBitmap().centerCrop()
+                    .into(new BitmapImageViewTarget(view.tgoc_avatar) {
+                        @Override
+                        protected void setResource(Bitmap resource) {
+                            RoundedBitmapDrawable circularBitmapDrawable =
+                                    RoundedBitmapDrawableFactory.create(view.getResources(), resource);
+                            circularBitmapDrawable.setCircular(true);
+                            view.setImageDrawable(circularBitmapDrawable);
+                        }
+                    });
         } else
             view.tgoc_avatar.setVisibility(View.GONE);
 
