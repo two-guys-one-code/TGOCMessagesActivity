@@ -13,11 +13,11 @@
 
     <ImageView
         android:id="@+id/tgoc_message_photo"
-        android:layout_width="@dimen/tgoc_image_max_size"
+        android:layout_width="@dimen/tgoc_content_size"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:adjustViewBounds="true"
-        android:maxHeight="@dimen/tgoc_image_max_size"
-        android:maxWidth="@dimen/tgoc_image_max_size" />
+        android:maxHeight="@dimen/tgoc_content_size"
+        android:maxWidth="@dimen/tgoc_content_size" />
 
 </RelativeLayout>

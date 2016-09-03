@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.gms.maps.MapView xmlns:map="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/tgoc_map"
+        android:name="com.google.android.gms.maps.MapFragment"
+        android:layout_width="@dimen/tgoc_content_size"
+        android:layout_height="@dimen/tgoc_content_size"
+        android:fitsSystemWindows="true"
+        map:layout_collapseMode="parallax"
+        map:cameraZoom="15"
+        map:liteMode="true"
+        map:mapType="normal" />
+
+</RelativeLayout>
