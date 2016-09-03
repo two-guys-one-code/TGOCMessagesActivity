@@ -1,54 +1,41 @@
 package br.com.tgoc.tgocmessage;
 
 import android.content.Context;
-import android.net.Uri;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-
-import com.bumptech.glide.Glide;
-
-import java.io.File;
 
 /**
  * Created by rodrigocavalcante on 9/2/16.
  */
 public class TGOCPhotoMediaItem implements TGOCMessageMediaInterface{
 
-    int resource = 0;
-    String url;
-    File file;
-    Uri uri;
+    Bitmap bitmap;
 
-    public TGOCPhotoMediaItem(File file) {
-        this.file = file;
+    Drawable drawable;
+
+    int resource;
+
+    public TGOCPhotoMediaItem(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
-    public TGOCPhotoMediaItem(String url) {
-        this.url = url;
-    }
+    public TGOCPhotoMediaItem(Drawable drawable) { this.drawable = drawable; }
 
-    public TGOCPhotoMediaItem(int resource) {
-        this.resource = resource;
-    }
-
-    public TGOCPhotoMediaItem(Uri uri) {
-        this.uri = uri;
-    }
+    public TGOCPhotoMediaItem(int resource) { this.resource = resource; }
 
     @Override
     public <T> T getData() {
-        if(url != null)
-            return (T) url;
+        if(bitmap != null)
+            return (T) bitmap;
 
-        if(file != null)
-            return (T) file;
+        if(drawable != null)
+            return (T) drawable;
 
         if(resource != 0)
             return (T) Integer.valueOf(resource);
-
-        if(uri != null)
-            return (T) uri;
 
         return null;
     }
@@ -57,7 +44,15 @@ public class TGOCPhotoMediaItem implements TGOCMessageMediaInterface{
     public View getView(Context context) {
         View view = LayoutInflater.from(context).inflate(R.layout.tgoc_photo_message_content, null);
 
-        Glide.with(context).load(getData()).into((ImageView) view.findViewById(R.id.tgoc_message_photo));
+        ImageView tgoc_image = (ImageView) view.findViewById(R.id.tgoc_message_photo);
+
+        if(bitmap != null) {
+            tgoc_image.setImageBitmap(bitmap);
+        } else if(drawable != null) {
+            tgoc_image.setImageDrawable(drawable);
+        } else if(resource != 0) {
+            tgoc_image.setImageResource(resource);
+        }
 
         return view;
     }
