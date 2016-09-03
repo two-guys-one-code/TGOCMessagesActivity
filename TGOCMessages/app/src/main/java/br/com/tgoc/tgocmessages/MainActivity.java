@@ -25,8 +25,8 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     public List<TGOCMessage> messages = new ArrayList();
 
-    TGOCBubble outgoingBubble = TGOCBubbleFactory.outgoingBubbleWithColor("#C7D6DA");
-    TGOCBubble incomingBubble = TGOCBubbleFactory.incomingBubbleWithColor("#FAFFFF");
+    TGOCBubble outgoingBubble = TGOCBubbleFactory.outgoingBubbleWithHexColor("#C7D6DA");
+    TGOCBubble incomingBubble = TGOCBubbleFactory.incomingBubbleWithHexColor("#FAFFFF");
     TGOCMessageAvatar outgoingAvatar = new TGOCMessageAvatar(R.drawable.rod);
     TGOCMessageAvatar incomingAvatar = new TGOCMessageAvatar(R.drawable.ed);
 
