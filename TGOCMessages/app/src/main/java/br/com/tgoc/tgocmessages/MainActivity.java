@@ -71,13 +71,8 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     @Override
     public void bindViewHolderAtPosition(TGOCMessageBubbleViewHolderInterface view, int position) {
-
-        //final TGOCMessage message = this.messages.get(position);
-
-        //if (sender_id == message.getSenderId()) {
         view.getSenderTextView().setTextColor(Color.parseColor("#29353A"));
         view.getTextView().setTextColor(Color.parseColor("#29353A"));
-        //}
     }
 
     @Override

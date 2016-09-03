@@ -10,11 +10,10 @@
         android:layout_width="@dimen/tgoc_avatar"
         android:layout_height="@dimen/tgoc_avatar"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_gravity="bottom"
-        android:src="@drawable/ic_account_circle_black_36dp"
-        android:background="@drawable/border" />
+        android:src="@drawable/ic_account_circle_black_36dp" />
 
     <LinearLayout
         android:id="@+id/tgoc_bubble_layout"
@@ -30,8 +29,8 @@
             android:id="@+id/tgoc_sender_display_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="@dimen/tgoc_layout_message_padding"
             android:layout_marginEnd="@dimen/tgoc_layout_message_padding"
+            android:layout_marginRight="@dimen/tgoc_layout_message_padding"
             android:layout_marginTop="@dimen/tgoc_layout_message_padding"
             android:selectAllOnFocus="true"
             android:textIsSelectable="true"
@@ -39,15 +38,16 @@
 
         <LinearLayout
             android:id="@+id/tgoc_content"
-            android:layout_marginRight="@dimen/tgoc_layout_message_padding"
-            android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"></LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/tgoc_layout_message_padding"
+            android:orientation="vertical"></LinearLayout>
 
         <TextView
             android:id="@+id/tgoc_message_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/tgoc_layout_message_padding"
             android:textIsSelectable="true" />
 
         <TextView
