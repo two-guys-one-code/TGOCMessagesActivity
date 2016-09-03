@@ -21,18 +21,24 @@ public class TGOCMessageActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tgocmessage);
     }
 
-    public void init(final TGOCMessageActivityInterface tgocMessageActivityInterface) {
-        adapter = new TGOCMessageAdapter(tgocMessageActivityInterface);
+    public void init(TGOCMessageActivityInterface tgocMessageActivityInterface) {
+        setRecyclerView(tgocMessageActivityInterface);
+        setSendButton(tgocMessageActivityInterface);
 
+        tgocEditText = (EditText) findViewById(R.id.tgoc_edittext);
+    }
+
+    public void setRecyclerView(TGOCMessageActivityInterface tgocMessageActivityInterface) {
+        adapter = new TGOCMessageAdapter(tgocMessageActivityInterface);
         tgocRecycleView = (RecyclerView) findViewById(R.id.tgoc_recycleview);
         tgocRecycleView.setItemAnimator(new DefaultItemAnimator());
         LinearLayoutManager manager = new LinearLayoutManager(tgocRecycleView.getContext());
         manager.setStackFromEnd(true);
         tgocRecycleView.setLayoutManager(manager);
         tgocRecycleView.setAdapter(adapter);
+    }
 
-        tgocEditText = (EditText) findViewById(R.id.tgoc_edittext);
-
+    public void setSendButton(final TGOCMessageActivityInterface tgocMessageActivityInterface) {
         ImageButton tgonSendButton = (ImageButton) findViewById(R.id.tgoc_imagebutton);
         tgonSendButton.setOnClickListener(new View.OnClickListener() {
             @Override

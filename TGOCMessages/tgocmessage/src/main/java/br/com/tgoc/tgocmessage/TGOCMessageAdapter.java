@@ -9,6 +9,7 @@ import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -70,19 +71,9 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleVi
         } else
             view.tgoc_sender_display_name.setVisibility(View.GONE);
 
-        TGOCMessageAvatarInterface tgocMessageAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
-        if (tgocMessageAvatarInterface != null) {
-            view.tgoc_avatar.setVisibility(View.VISIBLE);
-            Glide.with(view.mView.getContext()).load(tgocMessageAvatarInterface.getData()).asBitmap().centerCrop()
-                    .into(new BitmapImageViewTarget(view.tgoc_avatar) {
-                        @Override
-                        protected void setResource(Bitmap resource) {
-                            RoundedBitmapDrawable circularBitmapDrawable =
-                                    RoundedBitmapDrawableFactory.create(view.getResources(), resource);
-                            circularBitmapDrawable.setCircular(true);
-                            view.setImageDrawable(circularBitmapDrawable);
-                        }
-                    });
+        TGOCAvatarInterface tgocAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
+        if (tgocAvatarInterface != null) {
+            setRoudedAvatarInView(tgocAvatarInterface.getData(), view.tgoc_avatar);
         } else
             view.tgoc_avatar.setVisibility(View.GONE);
 
@@ -102,5 +93,13 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleVi
         } else {
             view.tgoc_message_text.setOnClickListener(null);
         }
+    }
+
+    private void setRoudedAvatarInView(Bitmap bitmap, ImageView tgoc_avatar) {
+        tgoc_avatar.setVisibility(View.VISIBLE);
+        RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(
+                tgoc_avatar.getResources(), bitmap);
+        circularBitmapDrawable.setCircular(true);
+        tgoc_avatar.setImageDrawable(circularBitmapDrawable);
     }
 }

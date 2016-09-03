@@ -1,5 +1,6 @@
 package br.com.tgoc.tgocmessages;
 
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -7,8 +8,9 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.tgoc.tgocmessage.TGOCMessageAvatar;
-import br.com.tgoc.tgocmessage.TGOCMessageAvatarInterface;
+import br.com.tgoc.tgocmessage.BubbleType;
+import br.com.tgoc.tgocmessage.TGOCAvatar;
+import br.com.tgoc.tgocmessage.TGOCAvatarInterface;
 import br.com.tgoc.tgocmessage.TGOCBubble;
 import br.com.tgoc.tgocmessage.TGOCBubbleFactory;
 import br.com.tgoc.tgocmessage.TGOCBubbleInterface;
@@ -23,16 +25,18 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     int sender_id = 0;
 
-    public List<TGOCMessage> messages = new ArrayList();
+    public List<TGOCMessage> messages = new ArrayList<>();
 
-    TGOCBubble outgoingBubble = TGOCBubbleFactory.outgoingBubbleWithHexColor("#C7D6DA");
-    TGOCBubble incomingBubble = TGOCBubbleFactory.incomingBubbleWithHexColor("#FAFFFF");
-    TGOCMessageAvatar outgoingAvatar = new TGOCMessageAvatar(R.drawable.rod);
-    TGOCMessageAvatar incomingAvatar = new TGOCMessageAvatar(R.drawable.ed);
+    TGOCBubble outgoingBubble;
+    TGOCBubble incomingBubble;
+    TGOCAvatar outgoingAvatar;
+    TGOCAvatar incomingAvatar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        initBubbleMessages();
 
         super.init(this);
 
@@ -49,13 +53,20 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
         finishSendingMessage();
     }
 
+    public void initBubbleMessages() {
+        outgoingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.OUTGOING, "#C7D6DA");
+        incomingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.INCOMING, "#FAFFFF");
+        outgoingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(),R.drawable.rod));
+        incomingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(),R.drawable.ed));
+    }
+
     @Override
     public int numberOfItemsInConversation() {
         return this.messages.size();
     }
 
     @Override
-    public TGOCMessageAvatarInterface avatarAtPosition(int position) {
+    public TGOCAvatarInterface avatarAtPosition(int position) {
         final TGOCMessage message = this.messages.get(position);
 
         if (sender_id == message.getSenderId())

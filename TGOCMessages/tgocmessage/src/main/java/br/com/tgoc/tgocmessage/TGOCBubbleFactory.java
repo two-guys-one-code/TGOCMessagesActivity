@@ -5,11 +5,10 @@ package br.com.tgoc.tgocmessage;
  */
 public class TGOCBubbleFactory {
 
-    public static TGOCBubble incomingBubbleWithHexColor(String color) {
-        return new TGOCBubble(R.layout.tgoc_in_message, color);
-    }
-
-    public static TGOCBubble outgoingBubbleWithHexColor(String color) {
-        return new TGOCBubble(R.layout.tgoc_out_message, color);
+    public static TGOCBubble bubbleWithHexColor(BubbleType type, String color) {
+        if (type == BubbleType.INCOMING)
+            return new TGOCBubble(R.layout.tgoc_in_message, color);
+        else
+            return new TGOCBubble(R.layout.tgoc_out_message, color);
     }
 }
