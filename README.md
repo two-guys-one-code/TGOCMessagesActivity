@@ -1,6 +1,6 @@
 # TGOCMessagesActivity
 
-TGOCMessagesActivity is a chat UI for your Android application. Based on [JSQMessageViewController](http://www.jessesquires.com/JSQMessagesViewController/)
+TGOCMessagesActivity is a chat UI for your Android application. Based on [JSQMessageViewController][jsq]
 
 ![Screenshot][img0] &nbsp;&nbsp; ![Screenshot][img1] &nbsp;&nbsp;
 
@@ -96,12 +96,21 @@ public void didPressSendButton(View view) {
   * Your media item model objects should implement TGOCMessageMediaInterface.
   * However, you may use the provided classes: TGOCPhotoMediaItem, TGOCLocationMediaItem.
   * Creating your own custom media items is easy! Simply follow the pattern used by the built-in media types.
-  * We added a sample example using Glide on TGOCGlidePhotoMediaItem.
+  * We added a sample example using [Glide][glide] on TGOCGlidePhotoMediaItem.
 
 * **Message Bubble Model**
   * Your message bubble model objects should implement TGOCBubbleInterface.
   * However, you may use the provided TGOCBubble class.
   * Also see TGOCBubbleFactory for easily generating incoming and outgoing bubbles.
+  
+## License
 
+TGOCMessagesActivity is released under an [MIT License][mit]. See License.md for details.
+
+>**Copyright &copy; 2016 two-guys-one-code.**
+
+[jsq]:http://www.jessesquires.com/JSQMessagesViewController/
+[glide]:https://github.com/bumptech/glide
+[mit]:http://opensource.org/licenses/MIT
 [img0]:https://github.com/two-guys-one-code/TGOCMessagesActivity/blob/master/Screenshots/screenshot0.png
 [img1]:https://github.com/two-guys-one-code/TGOCMessagesActivity/blob/master/Screenshots/screenshot1.png
