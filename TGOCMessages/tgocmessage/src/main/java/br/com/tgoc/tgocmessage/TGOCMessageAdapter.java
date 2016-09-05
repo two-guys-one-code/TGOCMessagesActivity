@@ -1,50 +1,78 @@
 package br.com.tgoc.tgocmessage;
 
-import android.graphics.Bitmap;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.RecyclerView;
 import android.text.format.DateFormat;
 import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 /**
  * Created by rodrigocavalcante on 8/31/16.
  */
-public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleViewHolder> {
+public class TGOCMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+
+    private static final int TYPING = -1;
 
     TGOCMessageActivityInterface tgocMessageActivityInterface;
+    TGOCMessageActivityTypingInterface tgocMessageActivityTypingInterface;
 
-    public TGOCMessageAdapter(TGOCMessageActivityInterface tgocMessageInterface) {
+    public TGOCMessageAdapter(TGOCMessageActivityInterface tgocMessageInterface, TGOCMessageActivityTypingInterface tgocMessageActivityTypingInterface) {
         this.tgocMessageActivityInterface = tgocMessageInterface;
+        this.tgocMessageActivityTypingInterface = tgocMessageActivityTypingInterface;
     }
 
     @Override
-    public TGOCMessageBubbleViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = null;
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(tgocMessageActivityInterface.messageBubbleAtPosition(viewType).getLayoutResource(), parent, false);
-
-        return new TGOCMessageBubbleViewHolder(view);
+        if (viewType == TYPING)
+            return new TGOCTypingViewHolder(LayoutInflater.from(parent.getContext()).inflate(tgocMessageActivityTypingInterface.typingBubble().getLayoutResource(), parent, false));
+        else
+            return new TGOCMessageBubbleViewHolder(LayoutInflater.from(parent.getContext()).inflate(tgocMessageActivityInterface.messageBubbleAtPosition(viewType).getLayoutResource(), parent, false));
     }
 
     @Override
     public int getItemViewType(int position) {
+
+        if (position >= tgocMessageActivityInterface.numberOfItemsInConversation())
+            return TYPING;
+
         return position;
     }
 
     @Override
     public int getItemCount() {
+
+        if (tgocMessageActivityTypingInterface.isTyping())
+            return tgocMessageActivityInterface.numberOfItemsInConversation() + 1;
+
         return tgocMessageActivityInterface.numberOfItemsInConversation();
     }
 
     @Override
-    public void onBindViewHolder(TGOCMessageBubbleViewHolder view, int position) {
-        TGOCMessageInterface tgocMessageInterface = tgocMessageActivityInterface.messageDataAtPosition(position);
-        bindMessageBubble(view, position, tgocMessageInterface);
-        tgocMessageActivityInterface.bindViewHolderAtPosition(view, position);
+    public void onBindViewHolder(RecyclerView.ViewHolder view, int position) {
+        if (position >= tgocMessageActivityInterface.numberOfItemsInConversation()) {
+            TGOCTypingViewHolder holder = (TGOCTypingViewHolder) view;
+
+            holder.tgoc_message_text.setText(tgocMessageActivityTypingInterface.typingText());
+            TGOCBubbleInterface tgocBubbleInterface = tgocMessageActivityTypingInterface.typingBubble();
+            holder.tgoc_bubble_layout.getBackground().setColorFilter(tgocBubbleInterface.getColorFilter());
+
+            TGOCAvatarInterface tgocAvatarInterface = tgocMessageActivityTypingInterface.typingAvatar();
+            if (tgocAvatarInterface != null) {
+                holder.tgoc_avatar.setVisibility(View.VISIBLE);
+                tgocAvatarInterface.bindImageView(holder.tgoc_avatar);
+            } else
+                holder.tgoc_avatar.setVisibility(View.GONE);
+
+        } else {
+            TGOCMessageBubbleViewHolder holder = (TGOCMessageBubbleViewHolder) view;
+
+            TGOCMessageInterface tgocMessageInterface = tgocMessageActivityInterface.messageDataAtPosition(position);
+            bindMessageBubble(holder, position, tgocMessageInterface);
+            tgocMessageActivityInterface.bindViewHolderAtPosition(holder, position);
+        }
     }
 
     public void bindMessageBubble(final TGOCMessageBubbleViewHolder view, int position, final TGOCMessageInterface tgocMessageInterface) {
@@ -70,7 +98,8 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleVi
 
         TGOCAvatarInterface tgocAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
         if (tgocAvatarInterface != null) {
-            setRoudedAvatarInView(tgocAvatarInterface.getData(), view.tgoc_avatar);
+            view.getAvatar().setVisibility(View.VISIBLE);
+            tgocAvatarInterface.bindImageView(view.getAvatar());
         } else
             view.tgoc_avatar.setVisibility(View.GONE);
 
@@ -90,13 +119,5 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<TGOCMessageBubbleVi
         } else {
             view.tgoc_message_text.setOnClickListener(null);
         }
-    }
-
-    private void setRoudedAvatarInView(Bitmap bitmap, ImageView tgoc_avatar) {
-        tgoc_avatar.setVisibility(View.VISIBLE);
-        RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(
-                tgoc_avatar.getResources(), bitmap);
-        circularBitmapDrawable.setCircular(true);
-        tgoc_avatar.setImageDrawable(circularBitmapDrawable);
     }
 }

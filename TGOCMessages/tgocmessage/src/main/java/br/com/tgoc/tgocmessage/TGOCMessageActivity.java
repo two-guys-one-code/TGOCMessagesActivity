@@ -9,16 +9,30 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class TGOCMessageActivity extends AppCompatActivity {
+public class TGOCMessageActivity extends AppCompatActivity implements TGOCMessageActivityTypingInterface{
 
     protected RecyclerView tgocRecycleView;
     protected TGOCMessageAdapter adapter;
     protected EditText tgocEditText;
 
+    protected String typingText = "Is typing...";
+    private boolean showTypingIndicator = false;
+    protected TGOCBubbleInterface typingBubble;
+    protected TGOCAvatarInterface typingAvatar;
+
+    public void setShowTypingIndicator(boolean showTypingIndicator) {
+        this.showTypingIndicator = showTypingIndicator;
+
+        if(this.adapter != null)
+            this.adapter.notifyDataSetChanged();
+        this.tgocRecycleView.smoothScrollToPosition(this.adapter.getItemCount());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tgocmessage);
+        typingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.TYPING, "#FAFFFF");
     }
 
     public void init(TGOCMessageActivityInterface tgocMessageActivityInterface) {
@@ -29,7 +43,7 @@ public class TGOCMessageActivity extends AppCompatActivity {
     }
 
     public void setRecyclerView(TGOCMessageActivityInterface tgocMessageActivityInterface) {
-        adapter = new TGOCMessageAdapter(tgocMessageActivityInterface);
+        adapter = new TGOCMessageAdapter(tgocMessageActivityInterface, this);
         tgocRecycleView = (RecyclerView) findViewById(R.id.tgoc_recycleview);
         tgocRecycleView.setItemAnimator(new DefaultItemAnimator());
         LinearLayoutManager manager = new LinearLayoutManager(tgocRecycleView.getContext());
@@ -52,5 +66,25 @@ public class TGOCMessageActivity extends AppCompatActivity {
         this.tgocEditText.setText("");
         this.adapter.notifyDataSetChanged();
         this.tgocRecycleView.smoothScrollToPosition(this.adapter.getItemCount());
+    }
+
+    @Override
+    public boolean isTyping() {
+        return showTypingIndicator;
+    }
+
+    @Override
+    public TGOCBubbleInterface typingBubble() {
+        return typingBubble;
+    }
+
+    @Override
+    public String typingText() {
+        return typingText;
+    }
+
+    @Override
+    public TGOCAvatarInterface typingAvatar() {
+        return typingAvatar;
     }
 }

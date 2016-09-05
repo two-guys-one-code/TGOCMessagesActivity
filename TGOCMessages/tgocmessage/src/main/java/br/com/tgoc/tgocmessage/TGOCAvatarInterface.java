@@ -1,10 +1,11 @@
 package br.com.tgoc.tgocmessage;
 
-import android.graphics.Bitmap;
+import android.widget.ImageView;
 
 /**
  * Created by rodrigocavalcante on 8/31/16.
  */
 public interface TGOCAvatarInterface {
-    Bitmap getData();
+    <T> T getData();
+    void bindImageView(ImageView imageView);
 }

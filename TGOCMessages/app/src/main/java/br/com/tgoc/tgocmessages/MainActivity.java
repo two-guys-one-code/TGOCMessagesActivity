@@ -20,11 +20,11 @@ import br.com.tgoc.tgocmessage.TGOCLocationMediaItem;
 import br.com.tgoc.tgocmessage.TGOCMessage;
 import br.com.tgoc.tgocmessage.TGOCMessageActivity;
 import br.com.tgoc.tgocmessage.TGOCMessageActivityInterface;
+import br.com.tgoc.tgocmessage.TGOCMessageBubbleViewHolderInterface;
 import br.com.tgoc.tgocmessage.TGOCMessageInterface;
 import br.com.tgoc.tgocmessage.TGOCPhotoMediaItem;
-import br.com.tgoc.tgocmessage.TGOCMessageBubbleViewHolderInterface;
 
-public class MainActivity extends TGOCMessageActivity implements TGOCMessageActivityInterface{
+public class MainActivity extends TGOCMessageActivity implements TGOCMessageActivityInterface {
 
     int sender_id = 0;
 
@@ -53,14 +53,19 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
         this.messages.add(new TGOCMessage(0, "", "Rodrigo", new TGOCPhotoMediaItem(R.drawable.rod)));
         this.messages.add(new TGOCMessage(1, "", "Edgar", new TGOCLocationMediaItem(new LatLng(37.773972, -122.431297))));
 
+        this.typingAvatar = new TGOCGlideAvatar(getApplicationContext(), "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png");
+        this.typingText = "Is typing...";
+
         finishSendingMessage();
     }
 
     public void initBubbleMessages() {
         outgoingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.OUTGOING, "#C7D6DA");
         incomingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.INCOMING, "#FAFFFF");
-        outgoingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(),R.drawable.rod));
-        incomingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(),R.drawable.ed));
+        outgoingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(), R.drawable.rod));
+        incomingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(), R.drawable.ed));
+
+        this.typingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.TYPING, "#FAFFFF");
     }
 
     @Override
@@ -91,7 +96,8 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     @Override
     public void didSelectMessage(TGOCMessageInterface messageInterface) {
-        System.out.println(messageInterface.getSenderDisplayName()+": "+messageInterface.toString());
+        System.out.println(messageInterface.getSenderDisplayName() + ": " + messageInterface.toString());
+        this.setShowTypingIndicator(!this.isTyping());
     }
 
     @Override
