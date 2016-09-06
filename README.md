@@ -1,12 +1,35 @@
 # TGOCMessagesActivity
 
-TGOCMessagesActivity is a chat UI for your Android application. Based on [JSQMessageViewController][jsq]
+`TGOCMessagesActivity` is a chat UI for your Android application. Based on [JSQMessageViewController][jsq]
 
 ![Screenshot][img0] &nbsp;&nbsp; ![Screenshot][img1] &nbsp;&nbsp;
 
-# Getting Started
+## Installing
 
-* Extends TGOCMessageActivity in your activity. It will create all UI
+Users of your library will need add the jitpack.io repository:
+
+```gradle
+allprojects {
+ repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+ }
+}
+```
+
+and:
+
+```gradle
+dependencies {
+    compile 'com.github.two-guys-one-code:TGOCMessagesActivity:v.0.1.1'
+}
+```
+
+Note: do not add the jitpack.io repository under `buildscript` 
+
+## Getting Started
+
+* Extends `TGOCMessageActivity` in your activity. It will create all UI
 
 ```java
 public class MainActivity extends TGOCMessageActivity
@@ -89,23 +112,29 @@ public void didPressSendButton(View view) {
 ```
 
 * **Message Model**
-  * Your message model objects should implement TGOCMessageInterface.
-  * However, you may use the provided TGOCMessage class.
+  * Your message model objects should implement `TGOCMessageInterface`.
+  * However, you may use the provided `TGOCMessage` class.
 
 * **Media Item Model**
-  * Your media item model objects should implement TGOCMessageMediaInterface.
-  * However, you may use the provided classes: TGOCPhotoMediaItem, TGOCLocationMediaItem.
+  * Your media item model objects should implement `TGOCMessageMediaInterface`.
+  * However, you may use the provided classes: `TGOCPhotoMediaItem`, `TGOCLocationMediaItem`.
   * Creating your own custom media items is easy! Simply follow the pattern used by the built-in media types.
-  * We added a sample example using [Glide][glide] on TGOCGlidePhotoMediaItem.
+  * We added a sample example using [Glide][glide] on `TGOCGlidePhotoMediaItem`.
+  
+* **Avatar Model**
+  * Your avatar model objects should implement `TGOCAvatarInterface`.
+  * However, you may use the provided `TGOCAvatar` class.
+  * Creating your own custom avatar is easy!
+  * We added a sample example using [Glide][glide] on `TGOCGlideAvatar`.
 
 * **Message Bubble Model**
-  * Your message bubble model objects should implement TGOCBubbleInterface.
-  * However, you may use the provided TGOCBubble class.
-  * Also see TGOCBubbleFactory for easily generating incoming and outgoing bubbles.
+  * Your message bubble model objects should implement `TGOCBubbleInterface`.
+  * However, you may use the provided `TGOCBubble` class.
+  * Also see `TGOCBubbleFactory` for easily generating incoming and outgoing bubbles.
   
 ## License
 
-TGOCMessagesActivity is released under an [MIT License][mit]. See License.md for details.
+`TGOCMessagesActivity` is released under an [MIT License][mit]. See License.md for details.
 
 >**Copyright &copy; 2016 two-guys-one-code.**
 
