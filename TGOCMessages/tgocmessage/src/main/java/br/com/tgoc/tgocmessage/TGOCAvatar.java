@@ -1,9 +1,10 @@
 package br.com.tgoc.tgocmessage;
 
+import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.view.View;
 import android.widget.ImageView;
 
 /**
@@ -12,6 +13,10 @@ import android.widget.ImageView;
 public class TGOCAvatar implements TGOCAvatarInterface {
 
     Bitmap avatar;
+
+    public TGOCAvatar(Resources res, int resource) {
+        avatar = BitmapFactory.decodeResource(res, resource);
+    }
 
     public TGOCAvatar(Bitmap avatar) {
         this.avatar = avatar;

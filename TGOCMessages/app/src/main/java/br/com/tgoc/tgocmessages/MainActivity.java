@@ -62,8 +62,8 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
     public void initBubbleMessages() {
         outgoingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.OUTGOING, "#C7D6DA");
         incomingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.INCOMING, "#FAFFFF");
-        outgoingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(), R.drawable.rod));
-        incomingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(), R.drawable.ed));
+        outgoingAvatar = new TGOCAvatar(getResources(), R.drawable.rod);
+        incomingAvatar = new TGOCAvatar(getResources(), R.drawable.ed);
 
         this.typingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.TYPING, "#FAFFFF");
     }
