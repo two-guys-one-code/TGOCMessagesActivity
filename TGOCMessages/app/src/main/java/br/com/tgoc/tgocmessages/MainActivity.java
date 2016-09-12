@@ -1,7 +1,7 @@
 package br.com.tgoc.tgocmessages;
 
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,6 +23,7 @@ import br.com.tgoc.tgocmessage.TGOCMessageActivityInterface;
 import br.com.tgoc.tgocmessage.TGOCMessageBubbleViewHolderInterface;
 import br.com.tgoc.tgocmessage.TGOCMessageInterface;
 import br.com.tgoc.tgocmessage.TGOCPhotoMediaItem;
+import br.com.tgoc.tgocmessage.TGOCVideoMediaItem;
 
 public class MainActivity extends TGOCMessageActivity implements TGOCMessageActivityInterface {
 
@@ -52,9 +53,12 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
         this.messages.add(new TGOCMessage(1, "Call me 541-754-3010 and visit my web site www.website.com or email @ em@il.com", "Edgar"));
         this.messages.add(new TGOCMessage(0, "", "Rodrigo", new TGOCPhotoMediaItem(R.drawable.rod)));
         this.messages.add(new TGOCMessage(1, "", "Edgar", new TGOCLocationMediaItem(new LatLng(37.773972, -122.431297))));
+        this.messages.add(new TGOCMessage(0, "", "Rodrigo", new TGOCVideoMediaItem(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video))));
 
-        this.typingAvatar = new TGOCGlideAvatar(getApplicationContext(), "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png");
+        this.typingAvatar = null;//new TGOCGlideAvatar(getApplicationContext(), "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png");
         this.typingText = "Is typing...";
+
+        this.setShowTypingIndicator(!this.isTyping());
 
         finishSendingMessage();
     }
@@ -97,7 +101,6 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
     @Override
     public void didSelectMessage(TGOCMessageInterface messageInterface) {
         System.out.println(messageInterface.getSenderDisplayName() + ": " + messageInterface.toString());
-        this.setShowTypingIndicator(!this.isTyping());
     }
 
     @Override
