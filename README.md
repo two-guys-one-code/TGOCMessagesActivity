@@ -12,7 +12,7 @@ Support:
 - [x] Image messages;
 - [x] Location messages;
 - [ ] Audio messages;
-- [ ] Vídeo messages;
+- [X] Video messages;
 - [ ] Contact messages;
 
 ## Installing
