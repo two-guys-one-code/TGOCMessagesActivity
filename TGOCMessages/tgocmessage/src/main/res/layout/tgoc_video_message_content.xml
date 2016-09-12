@@ -14,7 +14,7 @@
         android:background="@drawable/ic_play_circle_outline_white_48dp"
         android:layout_centerInParent="true"
         android:id="@+id/tgoc_play"
-        android:layout_width="48dp"
-        android:layout_height="48dp" />
+        android:layout_width="@dimen/tgoc_play_button"
+        android:layout_height="@dimen/tgoc_play_button" />
 
 </RelativeLayout>

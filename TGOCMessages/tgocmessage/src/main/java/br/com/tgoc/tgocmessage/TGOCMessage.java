@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class TGOCMessage implements TGOCMessageInterface {
 
-    int senderId;
+    String senderId;
     String senderDisplayName = null;
     Date date;
     String text;
@@ -22,7 +22,7 @@ public class TGOCMessage implements TGOCMessageInterface {
         this.date = date;
     }
 
-    public TGOCMessage(int senderId, String text, String senderDisplayName, TGOCMessageMediaInterface media) {
+    public TGOCMessage(String senderId, String text, String senderDisplayName, TGOCMessageMediaInterface media) {
         this.senderId = senderId;
         this.text = text;
         this.senderDisplayName = senderDisplayName;
@@ -31,14 +31,14 @@ public class TGOCMessage implements TGOCMessageInterface {
         this.isMediaMessage = true;
     }
 
-    public TGOCMessage(int senderId, String text, String senderDisplayName) {
+    public TGOCMessage(String senderId, String text, String senderDisplayName) {
         this.senderId = senderId;
         this.text = text;
         this.senderDisplayName = senderDisplayName;
         this.date = new Date();
     }
 
-    public TGOCMessage(int senderId, String text) {
+    public TGOCMessage(String senderId, String text) {
         this.senderId = senderId;
         this.text = text;
         this.date = new Date();
@@ -48,11 +48,11 @@ public class TGOCMessage implements TGOCMessageInterface {
         this.date = new Date();
     }
 
-    public int getSenderId() {
+    public String getSenderId() {
         return senderId;
     }
 
-    public void setSenderId(int senderId) {
+    public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
 

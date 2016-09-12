@@ -27,7 +27,7 @@ import br.com.tgoc.tgocmessage.TGOCVideoMediaItem;
 
 public class MainActivity extends TGOCMessageActivity implements TGOCMessageActivityInterface {
 
-    int sender_id = 0;
+    String sender_id = "0";
 
     public List<TGOCMessage> messages = new ArrayList<>();
 
@@ -44,16 +44,16 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
         super.init(this);
 
-        this.messages.add(new TGOCMessage(0, "Hi!", "Rodrigo", new TGOCGlidePhotoMediaItem("https://cdn.meme.am/images/1480924.jpg")));
-        this.messages.add(new TGOCMessage(1, "Hello! How are you?", "Edgar"));
-        this.messages.add(new TGOCMessage(0, "Fine. And you?", "Rodrigo"));
-        this.messages.add(new TGOCMessage(1, "Great!", "Edgar"));
-        this.messages.add(new TGOCMessage(0, "Lorem ipsum dolor sit amet, ad fabulas adipisci eum, solet voluptatum et cum, at brute maiorum deserunt ius. Ut mel elit delectus, id eum graecis antiopam. His ne aliquid sanctus, vis ex placerat interpretaris. Et quando maiestatis vis, cu amet alterum detracto sit, sit ex etiam legendos. Vim at novum persius hendrerit. Unum cotidieque eu mel.", "Rodrigo"));
-        this.messages.add(new TGOCMessage(1, "Ponderum intellegat adipiscing mel cu, meliore patrioque eu mei. An est prima abhorreant. Id quo mediocrem erroribus. Nibh impetus te est, apeirian indoctum sadipscing et eum, et mollis aperiri meliore mel. Ne mundi dicant duo, qui zril definitionem eu", "Edgar"));
-        this.messages.add(new TGOCMessage(1, "Call me 541-754-3010 and visit my web site www.website.com or email @ em@il.com", "Edgar"));
-        this.messages.add(new TGOCMessage(0, "", "Rodrigo", new TGOCPhotoMediaItem(R.drawable.rod)));
-        this.messages.add(new TGOCMessage(1, "", "Edgar", new TGOCLocationMediaItem(new LatLng(37.773972, -122.431297))));
-        this.messages.add(new TGOCMessage(0, "Check out this video", "Rodrigo", new TGOCVideoMediaItem(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video))));
+        this.messages.add(new TGOCMessage("0", "Hi!", "Rodrigo", new TGOCGlidePhotoMediaItem("https://cdn.meme.am/images/1480924.jpg")));
+        this.messages.add(new TGOCMessage("1", "Hello! How are you?", "Edgar"));
+        this.messages.add(new TGOCMessage("0", "Fine. And you?", "Rodrigo"));
+        this.messages.add(new TGOCMessage("1", "Great!", "Edgar"));
+        this.messages.add(new TGOCMessage("0", "Lorem ipsum dolor sit amet, ad fabulas adipisci eum, solet voluptatum et cum, at brute maiorum deserunt ius. Ut mel elit delectus, id eum graecis antiopam. His ne aliquid sanctus, vis ex placerat interpretaris. Et quando maiestatis vis, cu amet alterum detracto sit, sit ex etiam legendos. Vim at novum persius hendrerit. Unum cotidieque eu mel.", "Rodrigo"));
+        this.messages.add(new TGOCMessage("1", "Ponderum intellegat adipiscing mel cu, meliore patrioque eu mei. An est prima abhorreant. Id quo mediocrem erroribus. Nibh impetus te est, apeirian indoctum sadipscing et eum, et mollis aperiri meliore mel. Ne mundi dicant duo, qui zril definitionem eu", "Edgar"));
+        this.messages.add(new TGOCMessage("1", "Call me 541-754-3010 and visit my web site www.website.com or email @ em@il.com", "Edgar"));
+        this.messages.add(new TGOCMessage("0", "", "Rodrigo", new TGOCPhotoMediaItem(R.drawable.rod)));
+        this.messages.add(new TGOCMessage("1", "", "Edgar", new TGOCLocationMediaItem(new LatLng(37.773972, -122.431297))));
+        this.messages.add(new TGOCMessage("0", "Check out this video", "Rodrigo", new TGOCVideoMediaItem(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video))));
 
         this.typingAvatar = null;//new TGOCGlideAvatar(getApplicationContext(), "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png");
         this.typingText = "Is typing...";
@@ -115,7 +115,7 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     @Override
     public void didPressSendButton(View view) {
-        this.messages.add(new TGOCMessage(0, this.tgocEditText.getText().toString(), "Rodrigo"));
+        this.messages.add(new TGOCMessage("0", this.tgocEditText.getText().toString(), "Rodrigo"));
         this.finishSendingMessage();
     }
 }
