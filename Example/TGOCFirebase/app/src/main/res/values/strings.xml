@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TGOCFirebase</string>
+    <string name="title_activity_chat">ChatActivity</string>
+</resources>
