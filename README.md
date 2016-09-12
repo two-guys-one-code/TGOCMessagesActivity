@@ -11,9 +11,10 @@ Support:
 - [x] Select messages text;
 - [x] Image messages;
 - [x] Location messages;
-- [ ] Audio messages;
 - [X] Video messages;
+- [ ] Audio messages;
 - [ ] Contact messages;
+- [ ] Custom toolbar;
 
 ## Installing
 
@@ -32,7 +33,7 @@ and:
 
 ```gradle
 dependencies {
-    compile 'com.github.two-guys-one-code:TGOCMessagesActivity:v.0.1.1'
+    compile 'com.github.two-guys-one-code:TGOCMessagesActivity:0.2'
 }
 ```
 
@@ -40,10 +41,14 @@ Note: do not add the jitpack.io repository under `buildscript`
 
 ## Getting Started
 
-* Extends `TGOCMessageActivity` in your activity. It will create all UI
+* Extends `TGOCMessageActivity` in your activity. It will create all UI. On `OnCreate` remove `setContentView(R.layout.YOUR_LAYOUT)` and call `super.init(this)`
 
 ```java
 public class MainActivity extends TGOCMessageActivity
+protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        super.init(this);
+}
 ```
 
 * Create Bubbles and Avatars
@@ -64,11 +69,11 @@ public void initBubbleMessages() {
 
 ```
 
-* Implement TGOCMessageActivityiInterface
+* Implement `TGOCMessageActivityiInterface`
 
 ```java
-public List<TGOCMessage> messages = new ArrayList<>();
-int sender_id = 0;
+public List<TGOCMessageInterface> messages = new ArrayList<>();
+String sender_id = "mySenderId";
 
 @Override
 public int numberOfItemsInConversation() {
@@ -77,9 +82,9 @@ public int numberOfItemsInConversation() {
 
 @Override
 public TGOCAvatarInterface avatarAtPosition(int position) {
-    final TGOCMessage message = this.messages.get(position);
+    final TGOCMessageInterface message = this.messages.get(position);
 
-    if (sender_id == message.getSenderId())
+    if (sender_id.matches(message.getSenderId()))
         return null; //return null if you don't want avatar on your messages
     else
         return incomingAvatar;
@@ -103,9 +108,9 @@ public void didSelectMessage(TGOCMessageInterface messageInterface) {
 
 @Override
 public TGOCBubbleInterface messageBubbleAtPosition(int position) {
-    final TGOCMessage message = this.messages.get(position);
+    final TGOCMessageInterface message = this.messages.get(position);
 
-    if (sender_id == message.getSenderId())
+    if (sender_id.matches(message.getSenderId()))
         return outgoingBubble;
     else
         return incomingBubble;
