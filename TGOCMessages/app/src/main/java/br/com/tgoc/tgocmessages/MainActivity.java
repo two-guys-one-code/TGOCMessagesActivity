@@ -29,7 +29,7 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     String sender_id = "0";
 
-    public List<TGOCMessage> messages = new ArrayList<>();
+    public List<TGOCMessageInterface> messages = new ArrayList<>();
 
     TGOCBubble outgoingBubble;
     TGOCBubble incomingBubble;
@@ -58,9 +58,7 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
         this.typingAvatar = null;//new TGOCGlideAvatar(getApplicationContext(), "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png");
         this.typingText = "Is typing...";
 
-        this.setShowTypingIndicator(!this.isTyping());
-
-        finishSendingMessage();
+        finishReceivingMessage();
     }
 
     public void initBubbleMessages() {
@@ -79,9 +77,9 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     @Override
     public TGOCAvatarInterface avatarAtPosition(int position) {
-        final TGOCMessage message = this.messages.get(position);
+        final TGOCMessageInterface message = this.messages.get(position);
 
-        if (sender_id == message.getSenderId())
+        if (sender_id.matches(message.getSenderId()))
             return outgoingAvatar;
         else
             return incomingAvatar;
@@ -105,9 +103,9 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     @Override
     public TGOCBubbleInterface messageBubbleAtPosition(int position) {
-        final TGOCMessage message = this.messages.get(position);
+        final TGOCMessageInterface message = this.messages.get(position);
 
-        if (sender_id == message.getSenderId())
+        if (sender_id.matches(message.getSenderId()))
             return outgoingBubble;
         else
             return incomingBubble;

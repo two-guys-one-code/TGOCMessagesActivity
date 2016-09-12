@@ -68,6 +68,12 @@ public class TGOCMessageActivity extends AppCompatActivity implements TGOCMessag
         this.tgocRecycleView.smoothScrollToPosition(this.adapter.getItemCount());
     }
 
+    public void finishReceivingMessage() {
+        this.setShowTypingIndicator(false);
+        this.adapter.notifyDataSetChanged();
+        this.tgocRecycleView.smoothScrollToPosition(this.adapter.getItemCount());
+    }
+
     @Override
     public boolean isTyping() {
         return showTypingIndicator;
