@@ -4,9 +4,20 @@
 
 ![Screenshot][img0] &nbsp;&nbsp; ![Screenshot][img1] &nbsp;&nbsp;
 
+Support:
+
+- [x] Is typing indicator;
+- [x] Sites, phones and email link on messages;
+- [x] Select messages text;
+- [x] Image messages;
+- [x] Location messages;
+- [ ] Audio messages;
+- [ ] Vídeo messages;
+- [ ] Contact messages;
+
 ## Installing
 
-Users of your library will need add the jitpack.io repository:
+Users of this library will need add the jitpack.io repository:
 
 ```gradle
 allprojects {
@@ -47,8 +58,8 @@ TGOCAvatar incomingAvatar;
 public void initBubbleMessages() {
     outgoingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.OUTGOING, "#C7D6DA");
     incomingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.INCOMING, "#FAFFFF");
-    outgoingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(),R.drawable.rod));
-    incomingAvatar = new TGOCAvatar(BitmapFactory.decodeResource(getResources(),R.drawable.ed));
+    outgoingAvatar = new TGOCAvatar(getResources(), R.drawable.rod);
+    incomingAvatar = new TGOCAvatar(getResources(), R.drawable.ed);
 }
 
 ```
@@ -56,6 +67,9 @@ public void initBubbleMessages() {
 * Implement TGOCMessageActivityiInterface
 
 ```java
+public List<TGOCMessage> messages = new ArrayList<>();
+int sender_id = 0;
+
 @Override
 public int numberOfItemsInConversation() {
     return this.messages.size();
@@ -103,6 +117,19 @@ public void didPressSendButton(View view) {
     this.finishSendingMessage();
 }
 ```
+* Typing indicator
+```java
+//setup
+this.typingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.TYPING, "#FAFFFF");
+this.typingAvatar = new TGOCAvatar(getResources(), R.drawable.ed); //optional
+this.typingText = "Is typing...";
+```
+
+```java
+//show indicator
+this.setShowTypingIndicator(true);
+```
+
 * Add your google map v2 api key 
 
 ```xml
