@@ -44,10 +44,11 @@ Note: do not add the jitpack.io repository under `buildscript`
 * Extends `TGOCMessageActivity` in your activity. It will create all UI. On `OnCreate` remove `setContentView(R.layout.YOUR_LAYOUT)` and call `super.init(this)`
 
 ```java
-public class MainActivity extends TGOCMessageActivity
-protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        super.init(this);
+public class MainActivity extends TGOCMessageActivity {
+ protected void onCreate(Bundle savedInstanceState) {
+         super.onCreate(savedInstanceState);
+         super.init(this);
+ }
 }
 ```
 
@@ -149,7 +150,7 @@ this.setShowTypingIndicator(true);
 
 * **Media Item Model**
   * Your media item model objects should implement `TGOCMessageMediaInterface`.
-  * However, you may use the provided classes: `TGOCPhotoMediaItem`, `TGOCLocationMediaItem`.
+  * However, you may use the provided classes: `TGOCPhotoMediaItem`, `TGOCLocationMediaItem`, `TGOCVideoMediaItem`.
   * Creating your own custom media items is easy! Simply follow the pattern used by the built-in media types.
   * We added a sample example using [Glide][glide] on `TGOCGlidePhotoMediaItem`.
   
