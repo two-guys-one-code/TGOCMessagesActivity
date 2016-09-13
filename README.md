@@ -45,10 +45,10 @@ Note: do not add the jitpack.io repository under `buildscript`
 
 ```java
 public class MainActivity extends TGOCMessageActivity {
- protected void onCreate(Bundle savedInstanceState) {
-         super.onCreate(savedInstanceState);
-         super.init(this);
- }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        super.init(this);
+    }
 }
 ```
 
@@ -136,7 +136,17 @@ this.typingText = "Is typing...";
 this.setShowTypingIndicator(true);
 ```
 
-* Add your google map v2 api key 
+* Call `finishSendingMessage()` when you send a message 
+```java
+finishSendingMessage();
+```
+
+* and `finishReceivingMessage()` when you receive a message
+```java
+finishReceivingMessage();
+```
+
+* Add your google map v2 api key on your `Manifest.xml` file 
 
 ```xml
 <meta-data
