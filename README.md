@@ -33,7 +33,7 @@ and:
 
 ```gradle
 dependencies {
-    compile 'com.github.two-guys-one-code:TGOCMessagesActivity:0.2'
+    compile 'com.github.two-guys-one-code:TGOCMessagesActivity:0.2.1'
 }
 ```
 

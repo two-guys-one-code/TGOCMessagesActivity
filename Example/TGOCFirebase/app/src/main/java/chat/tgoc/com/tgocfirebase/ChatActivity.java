@@ -75,6 +75,7 @@ public class ChatActivity extends TGOCMessageActivity implements TGOCMessageActi
         });
 
         initBubbleMessages();
+        this.tgocRecycleView.setBackgroundColor(Color.WHITE);
     }
 
     public void initBubbleMessages() {
@@ -151,9 +152,7 @@ public class ChatActivity extends TGOCMessageActivity implements TGOCMessageActi
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Message message = dataSnapshot.getValue(Message.class);
                 messages.add(message);
-                ChatActivity.this.adapter.notifyDataSetChanged();
-                ChatActivity.this.tgocRecycleView.smoothScrollToPosition(ChatActivity.this.adapter.getItemCount());
-                setShowTypingIndicator(false);
+                finishReceivingMessage();
             }
 
             @Override
