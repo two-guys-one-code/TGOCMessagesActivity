@@ -29,8 +29,10 @@ public class TGOCAvatar implements TGOCAvatarInterface {
 
     @Override
     public void bindImageView(ImageView imageView) {
-        RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(imageView.getResources(), avatar);
-        circularBitmapDrawable.setCircular(true);
-        imageView.setImageDrawable(circularBitmapDrawable);
+        if (imageView != null) {
+            RoundedBitmapDrawable circularBitmapDrawable = RoundedBitmapDrawableFactory.create(imageView.getResources(), avatar);
+            circularBitmapDrawable.setCircular(true);
+            imageView.setImageDrawable(circularBitmapDrawable);
+        }
     }
 }
