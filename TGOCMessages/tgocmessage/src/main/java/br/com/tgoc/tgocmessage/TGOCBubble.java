@@ -24,18 +24,25 @@ public class TGOCBubble implements TGOCBubbleInterface {
 
     @Override
     public ColorFilter getColorFilter() {
-        int iColor = Color.parseColor(this.color);
+        if (this.color == null || this.color.isEmpty()) {
+            return null;
+        }
 
-        int red   = (iColor & 0xFF0000) / 0xFFFF;
-        int green = (iColor & 0xFF00) / 0xFF;
-        int blue  = iColor & 0xFF;
+        try {
+            int iColor = Color.parseColor(this.color);
 
-        float[] matrix = { 0, 0, 0, 0, red,
-                0, 0, 0, 0, green,
-                0, 0, 0, 0, blue,
-                0, 0, 0, 1, 0 };
+            int red = (iColor & 0xFF0000) / 0xFFFF;
+            int green = (iColor & 0xFF00) / 0xFF;
+            int blue = iColor & 0xFF;
 
-        ColorFilter colorFilter = new ColorMatrixColorFilter(matrix);
-        return colorFilter;
+            float[] matrix = {0, 0, 0, 0, red,
+                    0, 0, 0, 0, green,
+                    0, 0, 0, 0, blue,
+                    0, 0, 0, 1, 0};
+
+            return new ColorMatrixColorFilter(matrix);
+        } catch (IllegalArgumentException expection) {
+            return null;
+        }
     }
 }

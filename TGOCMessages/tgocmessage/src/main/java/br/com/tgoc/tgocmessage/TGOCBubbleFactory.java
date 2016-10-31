@@ -6,6 +6,9 @@ package br.com.tgoc.tgocmessage;
 public class TGOCBubbleFactory {
 
     public static TGOCBubble bubbleWithHexColor(BubbleType type, String color) {
+        if (type == null) {
+            return null;
+        }
 
         switch (type) {
             case INCOMING: {
@@ -19,10 +22,8 @@ public class TGOCBubbleFactory {
             case TYPING: {
                 return new TGOCBubble(R.layout.tgoc_typing_indicator, color);
             }
-
-            default: {
-                return null;
-            }
         }
+
+        return null;
     }
 }
