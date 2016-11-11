@@ -53,7 +53,6 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
         this.messages.add(new TGOCMessage("1", "Call me 541-754-3010 and visit my web site www.website.com or email @ em@il.com", "Edgar"));
         this.messages.add(new TGOCMessage("0", "", "Rodrigo", new TGOCPhotoMediaItem(R.drawable.rod)));
         this.messages.add(new TGOCMessage("1", "", "Edgar", new TGOCLocationMediaItem(new LatLng(37.773972, -122.431297))));
-//        this.messages.add(new TGOCMessage("0", "Check out this video", "Rodrigo", new TGOCVideoMediaItem(Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.video))));
 
         this.typingAvatar = null;//new TGOCGlideAvatar(getApplicationContext(), "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png");
         this.typingText = "Is typing...";
