@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/two-guys-one-code/TGOCMessagesActivity.svg?branch=master)](https://travis-ci.org/two-guys-one-code/TGOCMessagesActivity)
+
 # TGOCMessagesActivity
 
 `TGOCMessagesActivity` is a chat UI for your Android application. Based on [JSQMessageViewController][jsq]
