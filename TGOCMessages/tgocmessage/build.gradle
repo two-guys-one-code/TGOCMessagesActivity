@@ -1,5 +1,16 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.dicedmelon.gradle:jacoco-android:0.1.1'
+    }
+}
+
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'jacoco-android'
 
 group='com.github.two-guys-one-code'
 
@@ -12,7 +23,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-
+        testApplicationId "br.com.tgoc.tgocmessage.test"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
@@ -25,6 +36,10 @@ android {
         debug {
             testCoverageEnabled = true
         }
+    }
+
+    lintOptions {
+        abortOnError false
     }
 }
 
