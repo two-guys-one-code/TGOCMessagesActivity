@@ -39,7 +39,7 @@ before_script:
   - ./gradlew connectedCheck
 
 script:
-  — ./gradlew build jacocoTestReport
+  - ./gradlew build jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
