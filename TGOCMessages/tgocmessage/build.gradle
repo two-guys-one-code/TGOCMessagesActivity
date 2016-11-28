@@ -12,7 +12,7 @@ android {
         targetSdkVersion 25
         versionCode 1
         versionName "1.0"
-
+        testApplicationId "br.com.tgoc.tgocmessage.test"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
