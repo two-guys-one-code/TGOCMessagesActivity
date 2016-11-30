@@ -20,7 +20,7 @@ import static org.junit.Assert.assertNotEquals;
 public class TGOCLocationMediaItemTest {
 
     double lat = -1.0, lng = -48.0;
-    LatLng latLng = null;
+    LatLng latLng;
 
     @Before
     public void setup() {
