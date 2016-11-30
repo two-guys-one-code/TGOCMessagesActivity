@@ -7,12 +7,12 @@ import java.util.Date;
  */
 public class TGOCMessage implements TGOCMessageInterface {
 
-    String senderId;
-    String senderDisplayName = null;
-    Date date;
-    String text;
-    boolean isMediaMessage = false;
-    TGOCMessageMediaInterface media;
+    private String senderId;
+    private String senderDisplayName = null;
+    private Date date;
+    private String text;
+    private boolean isMediaMessage = false;
+    private TGOCMessageMediaInterface media;
 
     public Date getDate() {
         return date;
