@@ -8,7 +8,7 @@ import java.util.Date;
 public class TGOCMessage implements TGOCMessageInterface {
 
     private String senderId;
-    private String senderDisplayName = null;
+    private String senderDisplayName;
     private Date date;
     private String text;
     private boolean isMediaMessage = false;
@@ -27,8 +27,7 @@ public class TGOCMessage implements TGOCMessageInterface {
         this.text = text;
         this.senderDisplayName = senderDisplayName;
         this.date = new Date();
-        this.media = media;
-        this.isMediaMessage = true;
+        setMedia(media);
     }
 
     public TGOCMessage(String senderId, String text, String senderDisplayName) {
@@ -66,6 +65,13 @@ public class TGOCMessage implements TGOCMessageInterface {
 
     public String getText() {
         return text;
+    }
+
+    public void setMedia(TGOCMessageMediaInterface media) {
+        if(media != null) {
+            isMediaMessage = true;
+            this.media = media;
+        }
     }
 
     @Override
