@@ -24,8 +24,6 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = null;
-
         if (viewType == TYPING)
             return new TGOCTypingViewHolder(LayoutInflater.from(parent.getContext()).inflate(tgocMessageActivityTypingInterface.typingBubble().getLayoutResource(), parent, false));
         else

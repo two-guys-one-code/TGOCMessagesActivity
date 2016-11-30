@@ -15,7 +15,7 @@ Support:
 - [x] Select messages text;
 - [x] Image messages;
 - [x] Location messages;
-- [X] Video messages;
+- [ ] Video messages;
 - [ ] Audio messages;
 - [ ] Contact messages;
 - [ ] Custom toolbar;
