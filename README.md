@@ -15,7 +15,7 @@ Support:
 - [x] Select messages text;
 - [x] Image messages;
 - [x] Location messages;
-- [X] Video messages;
+- [ ] Video messages;
 - [ ] Audio messages;
 - [ ] Contact messages;
 - [ ] Custom toolbar;
@@ -164,7 +164,7 @@ finishReceivingMessage();
 
 * **Media Item Model**
   * Your media item model objects should implement `TGOCMessageMediaInterface`.
-  * However, you may use the provided classes: `TGOCPhotoMediaItem`, `TGOCLocationMediaItem`, `TGOCVideoMediaItem`.
+  * However, you may use the provided classes: `TGOCPhotoMediaItem`, `TGOCLocationMediaItem`.
   * Creating your own custom media items is easy! Simply follow the pattern used by the built-in media types.
   * We added a sample example using [Glide][glide] on `TGOCGlidePhotoMediaItem`.
   

@@ -7,12 +7,12 @@ import java.util.Date;
  */
 public class TGOCMessage implements TGOCMessageInterface {
 
-    String senderId;
-    String senderDisplayName = null;
-    Date date;
-    String text;
-    boolean isMediaMessage = false;
-    TGOCMessageMediaInterface media;
+    private String senderId;
+    private String senderDisplayName;
+    private Date date;
+    private String text;
+    private boolean isMediaMessage = false;
+    private TGOCMessageMediaInterface media;
 
     public Date getDate() {
         return date;
@@ -27,8 +27,7 @@ public class TGOCMessage implements TGOCMessageInterface {
         this.text = text;
         this.senderDisplayName = senderDisplayName;
         this.date = new Date();
-        this.media = media;
-        this.isMediaMessage = true;
+        setMedia(media);
     }
 
     public TGOCMessage(String senderId, String text, String senderDisplayName) {
@@ -66,6 +65,13 @@ public class TGOCMessage implements TGOCMessageInterface {
 
     public String getText() {
         return text;
+    }
+
+    public void setMedia(TGOCMessageMediaInterface media) {
+        if(media != null) {
+            isMediaMessage = true;
+            this.media = media;
+        }
     }
 
     @Override

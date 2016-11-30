@@ -24,4 +24,11 @@ public class TGOCTypingViewHolder extends RecyclerView.ViewHolder {
         tgoc_avatar = (ImageView) view.findViewById(R.id.tgoc_avatar);
     }
 
+    public TextView getTextView() {
+        return tgoc_message_text;
+    }
+
+    public ImageView getAvatar() {
+        return tgoc_avatar;
+    }
 }

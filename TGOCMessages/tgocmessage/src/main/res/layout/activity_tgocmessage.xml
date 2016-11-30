@@ -24,13 +24,15 @@
             android:id="@+id/tgoc_edittext"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="5" />
+            android:layout_weight="5"
+            android:inputType="text" />
 
         <ImageButton
             android:id="@+id/tgoc_imagebutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:contentDescription="@string/send_message"
             android:src="@drawable/ic_send_black_24dp" />
 
     </LinearLayout>

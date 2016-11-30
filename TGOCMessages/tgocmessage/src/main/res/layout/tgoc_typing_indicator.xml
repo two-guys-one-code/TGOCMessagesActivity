@@ -12,6 +12,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_gravity="bottom"
+        android:contentDescription="@string/avatar"
         android:src="@drawable/ic_account_circle_black_36dp" />
 
     <LinearLayout
@@ -20,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/tgoc_avatar"
         android:background="@drawable/msg_in"
-        android:backgroundTint="@color/tgoc_border"
         android:orientation="vertical"
         android:padding="@dimen/tgoc_text_message_padding">
 
