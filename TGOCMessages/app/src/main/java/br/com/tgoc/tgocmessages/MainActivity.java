@@ -1,7 +1,6 @@
 package br.com.tgoc.tgocmessages;
 
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -23,7 +22,6 @@ import br.com.tgoc.tgocmessage.TGOCMessageActivityInterface;
 import br.com.tgoc.tgocmessage.TGOCMessageBubbleViewHolderInterface;
 import br.com.tgoc.tgocmessage.TGOCMessageInterface;
 import br.com.tgoc.tgocmessage.TGOCPhotoMediaItem;
-import br.com.tgoc.tgocmessage.TGOCVideoMediaItem;
 
 public class MainActivity extends TGOCMessageActivity implements TGOCMessageActivityInterface {
 
@@ -51,7 +49,7 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
         this.messages.add(new TGOCMessage("0", "Lorem ipsum dolor sit amet, ad fabulas adipisci eum, solet voluptatum et cum, at brute maiorum deserunt ius. Ut mel elit delectus, id eum graecis antiopam. His ne aliquid sanctus, vis ex placerat interpretaris. Et quando maiestatis vis, cu amet alterum detracto sit, sit ex etiam legendos. Vim at novum persius hendrerit. Unum cotidieque eu mel.", "Rodrigo"));
         this.messages.add(new TGOCMessage("1", "Ponderum intellegat adipiscing mel cu, meliore patrioque eu mei. An est prima abhorreant. Id quo mediocrem erroribus. Nibh impetus te est, apeirian indoctum sadipscing et eum, et mollis aperiri meliore mel. Ne mundi dicant duo, qui zril definitionem eu", "Edgar"));
         this.messages.add(new TGOCMessage("1", "Call me 541-754-3010 and visit my web site www.website.com or email @ em@il.com", "Edgar"));
-        this.messages.add(new TGOCMessage("0", "", "Rodrigo", new TGOCPhotoMediaItem(R.drawable.rod)));
+        this.messages.add(new TGOCMessage("0", "", "Rodrigo", new TGOCPhotoMediaItem(this.getResources(), R.drawable.rod)));
         this.messages.add(new TGOCMessage("1", "", "Edgar", new TGOCLocationMediaItem(new LatLng(37.773972, -122.431297))));
 
         this.typingAvatar = null;//new TGOCGlideAvatar(getApplicationContext(), "https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png");
