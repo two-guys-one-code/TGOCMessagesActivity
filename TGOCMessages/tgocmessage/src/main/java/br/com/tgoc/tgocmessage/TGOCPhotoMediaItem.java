@@ -30,6 +30,9 @@ public class TGOCPhotoMediaItem implements TGOCMessageMediaInterface{
 
     @Override
     public View getView(Context context) {
+        if(context == null)
+            return null;
+
         View view = LayoutInflater.from(context).inflate(R.layout.tgoc_photo_message_content, null);
 
         ImageView tgoc_image = (ImageView) view.findViewById(R.id.tgoc_message_photo);

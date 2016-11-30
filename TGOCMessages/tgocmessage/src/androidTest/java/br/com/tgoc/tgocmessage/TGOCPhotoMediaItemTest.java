@@ -26,7 +26,7 @@ public class TGOCPhotoMediaItemTest {
     }
 
     @Test
-    public void test_nullPhotoFromResources() {
+    public void test_photoFromResources() {
         TGOCPhotoMediaItem photo = new TGOCPhotoMediaItem(context.getResources(), R.drawable.ic_send_black_24dp);
 
         assertNotEquals(photo.getData(), null);
@@ -44,5 +44,12 @@ public class TGOCPhotoMediaItemTest {
         TGOCPhotoMediaItem photo = new TGOCPhotoMediaItem(context.getResources(), R.drawable.ic_send_black_24dp);
 
         assertNotEquals(photo.getView(context), null);
+    }
+
+    @Test
+    public void test_nullContextPhotoView() {
+        TGOCPhotoMediaItem photo = new TGOCPhotoMediaItem(null, R.drawable.ic_send_black_24dp);
+
+        assertEquals(photo.getView(context), null);
     }
 }
