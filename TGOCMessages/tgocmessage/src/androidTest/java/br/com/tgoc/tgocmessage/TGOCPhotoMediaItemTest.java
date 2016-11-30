@@ -48,8 +48,8 @@ public class TGOCPhotoMediaItemTest {
 
     @Test
     public void test_nullContextPhotoView() {
-        TGOCPhotoMediaItem photo = new TGOCPhotoMediaItem(null, R.drawable.ic_send_black_24dp);
+        TGOCPhotoMediaItem photo = new TGOCPhotoMediaItem(context.getResources(), R.drawable.ic_send_black_24dp);
 
-        assertEquals(photo.getView(context), null);
+        assertEquals(photo.getView(null), null);
     }
 }
