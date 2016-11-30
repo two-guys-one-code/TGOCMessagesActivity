@@ -53,16 +53,16 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         if (position >= tgocMessageActivityInterface.numberOfItemsInConversation()) {
             TGOCTypingViewHolder holder = (TGOCTypingViewHolder) view;
 
-            holder.tgoc_message_text.setText(tgocMessageActivityTypingInterface.typingText());
+            holder.getTextView().setText(tgocMessageActivityTypingInterface.typingText());
             TGOCBubbleInterface tgocBubbleInterface = tgocMessageActivityTypingInterface.typingBubble();
             holder.tgoc_bubble_layout.getBackground().setColorFilter(tgocBubbleInterface.getColorFilter());
 
             TGOCAvatarInterface tgocAvatarInterface = tgocMessageActivityTypingInterface.typingAvatar();
             if (tgocAvatarInterface != null) {
-                holder.tgoc_avatar.setVisibility(View.VISIBLE);
+                holder.getAvatar().setVisibility(View.VISIBLE);
                 tgocAvatarInterface.bindImageView(holder.tgoc_avatar);
             } else
-                holder.tgoc_avatar.setVisibility(View.GONE);
+                holder.getAvatar().setVisibility(View.GONE);
 
         } else {
             TGOCMessageBubbleViewHolder holder = (TGOCMessageBubbleViewHolder) view;
@@ -78,28 +78,28 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
         view.tgoc_bubble_layout.getBackground().setColorFilter(tgocBubbleInterface.getColorFilter());
 
         if (tgocMessageInterface != null) {
-            view.tgoc_message_text.setText(tgocMessageInterface.getText());
-            Linkify.addLinks(view.tgoc_message_text, Linkify.ALL);
+            view.getTextView().setText(tgocMessageInterface.getText());
+            Linkify.addLinks(view.getTextView(), Linkify.ALL);
 
             if (tgocMessageInterface.getDate() != null) {
-                view.tgoc_time_text.setVisibility(View.VISIBLE);
-                view.tgoc_time_text.setText(DateFormat.getTimeFormat(view.mView.getContext()).format(tgocMessageInterface.getDate()));
+                view.getTimeTextView().setVisibility(View.VISIBLE);
+                view.getTimeTextView().setText(DateFormat.getTimeFormat(view.mView.getContext()).format(tgocMessageInterface.getDate()));
             } else
-                view.tgoc_time_text.setVisibility(View.GONE);
+                view.getTimeTextView().setVisibility(View.GONE);
         }
 
         if (tgocMessageInterface.getSenderDisplayName() != null) {
-            view.tgoc_sender_display_name.setVisibility(View.VISIBLE);
-            view.tgoc_sender_display_name.setText(tgocMessageInterface.getSenderDisplayName());
+            view.getSenderTextView().setVisibility(View.VISIBLE);
+            view.getSenderTextView().setText(tgocMessageInterface.getSenderDisplayName());
         } else
-            view.tgoc_sender_display_name.setVisibility(View.GONE);
+            view.getSenderTextView().setVisibility(View.GONE);
 
         TGOCAvatarInterface tgocAvatarInterface = tgocMessageActivityInterface.avatarAtPosition(position);
         if (tgocAvatarInterface != null) {
             view.getAvatar().setVisibility(View.VISIBLE);
             tgocAvatarInterface.bindImageView(view.getAvatar());
         } else
-            view.tgoc_avatar.setVisibility(View.GONE);
+            view.getAvatar().setVisibility(View.GONE);
 
         if (tgocMessageInterface.isMediaMessage()) {
             view.tgoc_content.removeAllViews();
@@ -115,7 +115,7 @@ public class TGOCMessageAdapter extends RecyclerView.Adapter<RecyclerView.ViewHo
                 }
             });
         } else {
-            view.tgoc_message_text.setOnClickListener(null);
+            view.getTextView().setOnClickListener(null);
         }
     }
 }
