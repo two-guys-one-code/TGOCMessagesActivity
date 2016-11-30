@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TGOCMessage</string>
+    <string name="send_message">Send message</string>
+    <string name="avatar">Avatar</string>
 </resources>
