@@ -1,6 +1,5 @@
 package br.com.tgoc.tgocmessage;
 
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 
 import org.junit.Before;
@@ -18,7 +17,7 @@ import static org.junit.Assert.assertTrue;
 @RunWith(AndroidJUnit4.class)
 public class TGOCMessageTest {
 
-    TGOCMessage message = null;
+    TGOCMessage message;
 
     @Before
     public void setup() {}
@@ -80,9 +79,9 @@ public class TGOCMessageTest {
     }
 
     @Test
-    public void test_isMediaType() {
+    public void test_nullMedia() {
         message = new TGOCMessage(null, null, null, null);
 
-        assertTrue(message.isMediaMessage());
+        assertFalse(message.isMediaMessage());
     }
 }
