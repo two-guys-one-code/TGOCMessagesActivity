@@ -8,7 +8,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Rodrigo.Cavalcante on 30/11/16.
@@ -32,55 +34,55 @@ public class TGOCMessageTest {
     public void test_senderID() {
         message = new TGOCMessage("id", null);
 
-        assertEquals(message.senderId, "id");
+        assertEquals(message.getSenderId(), "id");
     }
 
     @Test
     public void test_nullSenderID() {
         message = new TGOCMessage(null, null);
 
-        assertEquals(message.senderId, null);
+        assertEquals(message.getSenderId(), null);
     }
 
     @Test
     public void test_text() {
         message = new TGOCMessage(null, "text");
 
-        assertEquals(message.text, "text");
+        assertEquals(message.getText(), "text");
     }
 
     @Test
     public void test_nullText() {
         message = new TGOCMessage(null, null);
 
-        assertEquals(message.text, null);
+        assertEquals(message.getText(), null);
     }
 
     @Test
     public void test_senderDisplayName() {
         message = new TGOCMessage(null, null, "display name");
 
-        assertEquals(message.senderDisplayName, "display name");
+        assertEquals(message.getSenderDisplayName(), "display name");
     }
 
     @Test
     public void test_nullSenderDisplayName() {
         message = new TGOCMessage(null, null, null);
 
-        assertEquals(message.senderDisplayName, null);
+        assertEquals(message.getSenderDisplayName(), null);
     }
 
     @Test
     public void test_falseIsMediaType() {
         message = new TGOCMessage();
 
-        assertEquals(message.isMediaMessage, false);
+        assertFalse(message.isMediaMessage());
     }
 
     @Test
     public void test_isMediaType() {
         message = new TGOCMessage(null, null, null, null);
 
-        assertEquals(message.isMediaMessage, true);
+        assertTrue(message.isMediaMessage());
     }
 }

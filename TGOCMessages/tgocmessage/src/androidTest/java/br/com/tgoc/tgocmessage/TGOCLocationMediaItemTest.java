@@ -43,12 +43,4 @@ public class TGOCLocationMediaItemTest {
 
         assertEquals(media.getData(), latLng);
     }
-
-    @Test
-    public void test_view() {
-        TGOCLocationMediaItem media = new TGOCLocationMediaItem(latLng);
-
-        assertNotEquals(media.getView(InstrumentationRegistry.getContext()), null);
-    }
-
 }
