@@ -80,9 +80,8 @@ public class ChatActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     public void initBubbleMessages() {
         outgoingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.OUTGOING, "#3F51B5");
-        incomingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.INCOMING, "#FAFFFF");
-
-        this.typingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.TYPING, "#FAFFFF");
+        incomingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.INCOMING, "#C7D6DA");
+        this.typingBubble = TGOCBubbleFactory.bubbleWithHexColor(BubbleType.TYPING, "#C7D6DA");
     }
 
     @Override

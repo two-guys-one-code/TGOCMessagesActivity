@@ -4,14 +4,14 @@
 
 # TGOCMessagesActivity
 
-`TGOCMessagesActivity` is a chat UI for your Android application. Based on [JSQMessageViewController][jsq]
+`TGOCMessagesActivity` is a android chat UI for your application. Based on [JSQMessageViewController][jsq]
 
 ![Screenshot][img0] &nbsp;&nbsp; ![Screenshot][img1] &nbsp;&nbsp;
 
-Support:
+## Roadmap
 
-- [x] Is typing indicator;
-- [x] Sites, phones and email link on messages;
+- [x] "Is typing..." indicator;
+- [x] Sites and phones on messages;
 - [x] Select messages text;
 - [x] Image messages;
 - [x] Location messages;
@@ -37,11 +37,11 @@ and:
 
 ```gradle
 dependencies {
-    compile 'com.github.two-guys-one-code:TGOCMessagesActivity:0.2.1'
+    compile 'com.github.two-guys-one-code:TGOCMessagesActivity:0.2.2'
 }
 ```
 
-Note: do not add the jitpack.io repository under `buildscript` 
+Note: do not add the jitpack.io repository under `buildscript`
 
 ## Getting Started
 
@@ -140,7 +140,7 @@ this.typingText = "Is typing...";
 this.setShowTypingIndicator(true);
 ```
 
-* Call `finishSendingMessage()` when you send a message 
+* Call `finishSendingMessage()` when you send a message
 ```java
 finishSendingMessage();
 ```
@@ -150,7 +150,7 @@ finishSendingMessage();
 finishReceivingMessage();
 ```
 
-* Add your google map v2 api key on your `Manifest.xml` file 
+* Add your google map v2 api key on your `Manifest.xml` file
 
 ```xml
 <meta-data
@@ -167,7 +167,7 @@ finishReceivingMessage();
   * However, you may use the provided classes: `TGOCPhotoMediaItem`, `TGOCLocationMediaItem`.
   * Creating your own custom media items is easy! Simply follow the pattern used by the built-in media types.
   * We added a sample example using [Glide][glide] on `TGOCGlidePhotoMediaItem`.
-  
+
 * **Avatar Model**
   * Your avatar model objects should implement `TGOCAvatarInterface`.
   * However, you may use the provided `TGOCAvatar` class.
@@ -178,7 +178,7 @@ finishReceivingMessage();
   * Your message bubble model objects should implement `TGOCBubbleInterface`.
   * However, you may use the provided `TGOCBubble` class.
   * Also see `TGOCBubbleFactory` for easily generating incoming and outgoing bubbles.
-  
+
 ## License
 
 `TGOCMessagesActivity` is released under an [MIT License][mit]. See License.md for details.
