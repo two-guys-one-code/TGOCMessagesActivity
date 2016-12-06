@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/two-guys-one-code/TGOCMessagesActivity.svg?branch=master)](https://travis-ci.org/two-guys-one-code/TGOCMessagesActivity)
 [![codecov](https://codecov.io/gh/two-guys-one-code/TGOCMessagesActivity/branch/master/graph/badge.svg)](https://codecov.io/gh/two-guys-one-code/TGOCMessagesActivity)
+[![](https://jitpack.io/v/two-guys-one-code/TGOCMessagesActivity.svg)](https://jitpack.io/#two-guys-one-code/TGOCMessagesActivity)
 
 
 # TGOCMessagesActivity

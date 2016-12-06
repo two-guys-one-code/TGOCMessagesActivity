@@ -110,7 +110,13 @@ public class MainActivity extends TGOCMessageActivity implements TGOCMessageActi
 
     @Override
     public void didPressSendButton(View view) {
-        this.messages.add(new TGOCMessage("0", this.tgocEditText.getText().toString(), "Rodrigo"));
+
+        String text = this.tgocEditText.getText().toString();
+
+        if (text.matches(""))
+            return;
+
+        this.messages.add(new TGOCMessage("0", text, "Rodrigo"));
         this.finishSendingMessage();
     }
 }
